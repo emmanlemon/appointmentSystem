@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,9 +19,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'first_name',
+    'middle_name',
+    'last_name',
+    'age',
+    'gender',
+    'services',
+    'address',
+    'contact_number',
+    'email',
+    'password',
+    'role',
+    'image'
     ];
 
     /**
@@ -42,4 +52,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('d/m/Y h:i:s');
+    }
 }

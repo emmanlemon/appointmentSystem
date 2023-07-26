@@ -8,6 +8,6 @@
     @vite(['resources/js/app.js'])
 </head>
 <body>
-    <button class="btn btn-danger">sample</button>
+    
 </body>
 </html>
