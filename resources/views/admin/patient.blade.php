@@ -32,7 +32,7 @@
           </tr>
           @empty
             <tr>
-                <td colspan="7">No Patient found.</td>
+                <td colspan="8">No Patient found.</td>
             </tr>
           @endforelse
         </tbody>

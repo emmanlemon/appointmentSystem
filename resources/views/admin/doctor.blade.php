@@ -31,7 +31,7 @@
           @forelse($doctors as $doctor)
           <tr>
             <th>{{ $count++ }}</th>
-            <td><img src="{{ asset("images/doctor/$doctor->image") }}" alt="" height="200px" width="200px"></td> 
+            <td><img src="{{ asset("images/doctor/$doctor->image") }}" alt="" height="200px" width="200px"></td>
             <td>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</td>
             <td>{{ $doctor->address }}</td>
             <td>{{ $doctor->contact_number }}</td>
@@ -48,7 +48,7 @@
           </tr>
           @empty
             <tr>
-              <td colspan="7">No Doctor found.</td>
+              <td colspan="8">No Doctor found.</td>
             </tr>
           @endforelse
         </tbody>
@@ -74,16 +74,16 @@
             <div class="form-outline mb-2">
               <label class="form-label">First Name</label>
                 <input type="type" name="first_name" class="form-control form-control-lg"
-                  placeholder="Enter Name" value="{{ old('first_name') }}"/>
+                  placeholder="Enter Name" value="{{ old('first_name') }}" required/>
                 @error('first_name')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
           </div>
-          
+
           <div class="form-outline mb-2">
             <label class="form-label">Middle Name</label>
               <input type="type" name="middle_name" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('middle_name') }}"/>
+                placeholder="Enter Name" value="{{ old('middle_name') }}" required/>
               @error('middle_name')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -92,7 +92,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Last Name</label>
               <input type="type" name="last_name" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('last_name') }}"/>
+                placeholder="Enter Name" value="{{ old('last_name') }}" required/>
               @error('last_name')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -101,16 +101,16 @@
           <div class="form-outline mb-2">
             <label class="form-label">Contact number</label>
               <input type="type" name="contact_number" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('contact_number') }}"/>
+                placeholder="Enter Name" value="{{ old('contact_number') }}" required/>
               @error('contact_number')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
           </div>
-          
+
           <div class="form-outline mb-2">
             <label class="form-label">Address</label>
               <input type="type" name="address" class="form-control form-control-lg"
-                placeholder="Enter Name"  value="{{ old('address') }}"/>
+                placeholder="Enter Name"  value="{{ old('address') }}" required/>
               @error('address')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -120,7 +120,7 @@
           <div class="form-outline mb-2">
           <label class="form-label">Email address</label>
             <input type="email" name="email" class="form-control form-control-lg"
-              placeholder="Enter a valid email address"  value="{{ old('email') }}"/>
+              placeholder="Enter a valid email address"  value="{{ old('email') }}" required/>
             @error('email')
             <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -129,7 +129,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Services</label>
               <input type="type" name="services" class="form-control form-control-lg"
-                placeholder="Services"  value="{{ old('services') }}"/>
+                placeholder="Services"  value="{{ old('services') }}" required/>
               @error('services')
               <span class="text-danger">{{ $message }}</span>
               @enderror
