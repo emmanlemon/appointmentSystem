@@ -14,7 +14,7 @@
             <div class="col-4">
               <img src="{{ asset("images/activities/act2.jpg") }}" alt="" height="300px" width="100%">
             </div>
-          </div>             
+          </div>
     </div>
 
         <div>
