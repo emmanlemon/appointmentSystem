@@ -29,14 +29,14 @@
           @forelse($carousels as $carousel)
           <tr>
             <th>{{ $count++ }}</th>
-            <td><img src="{{ asset("images/carousel/$carousel->image") }}" alt="" height="200px" width="200px"></td> 
+            <td><img src="{{ asset("images/carousel/$carousel->image") }}" alt="" height="200px" width="200px"></td>
             <td>{{ $carousel->title }}</td>
             <td>{{ $carousel->description }}</td>
             <td>{{ $carousel->created_at }}</td>
             <td colspan="2">
               <div>
-                  <button class="btn btn-success">Edit</button>
-              </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal">Edit</button>
+            </div>
               <form action='{{ route('carousel.destroy' , $carousel->id) }}' method="post">
                       <input class="btn btn-danger" type="submit" value="Delete" />
                       @method('delete')

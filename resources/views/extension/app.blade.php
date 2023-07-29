@@ -10,4 +10,5 @@
     <link rel="icon" href="{{ asset('images/logoMBP.png') }}" type="image/gif" sizes="20x20">
     <link rel="stylesheet" style="text/css" href="{{ url('css/global.css') }}">
     @vite(['resources/js/app.js'])
-@yield('app')
+
+    @yield('app')

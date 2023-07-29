@@ -1,7 +1,7 @@
 @include('extension.app')
 <link rel="stylesheet" style="text/css" href="{{ url('css/sideBarNavigation.css') }}">
 <div class="sidebar">
-    <img src="{{ asset('images/logoMBP.png') }}" 
+    <img src="{{ asset('images/logoMBP.png') }}"
         alt="" style="width:50px; height:50px;">
     <div class="logo-details">
         <div class="logo_name">MBP-Blessed Trinity General Hospital</div>
@@ -119,5 +119,15 @@
      closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
    }
   }
+  </script>
+  <script>
+    $(document).ready(function() {
+      $("#searchInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("tbody tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
   </script>
 @yield('sideBarNavigation')
