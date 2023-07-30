@@ -14,7 +14,6 @@
     @elseif(Session::has('success'))
     <div class="alert alert-success">{{ Session::get('success') }}</div>
     @endif
-
     <div class="input-group rounded">
         <input type="text" id="searchInput" class="form-control p-3" placeholder="Search doctors...">
         <span class="input-group-text border-0" id="search-addon">
