@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Appointment;
-use Session;
-use Hash;
-use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
@@ -18,13 +17,13 @@ class DoctorController extends Controller
     public function index($page = null)
     {
         $user = Session::get('loginId');
-        $doctors = User::where('role' , '=' , '1')->get();
-        $appointments = Appointment::where('doctor_id' , '=' , $user)->paginate(10);
-        $appointmentreports = Appointment::where('doctor_id' , '=' , $user)->where('status', '=' ,'APPROVED')->paginate(5);
-        if($page != null){
-            return view('doctor.'.$page , compact('appointments', 'appointmentreports'));
+        $doctors = User::where('role', '=', '1')->get();
+        $appointments = Appointment::where('doctor_id', '=', $user)->paginate(10);
+        $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('status', '=', 'APPROVED')->paginate(5);
+        if ($page != null) {
+            return view('doctor.' . $page, compact('appointments', 'appointmentreports'));
         }
-        return view('doctor.index' , compact('appointments', 'appointmentreports'));
+        return view('doctor.index', compact('appointments', 'appointmentreports'));
     }
     /**
      * Show the form for creating a new resource.
@@ -57,7 +56,7 @@ class DoctorController extends Controller
             'email' => $request->input('email'),
             'services' => $request->input('services'),
             'password' => $encrypted,
-            'role'=> $request->input('role'),
+            'role' => $request->input('role'),
             'image' => $request->image->getClientOriginalName()
         ]);
         return redirect()->back()->with('success', 'Created Successfully!');
@@ -68,7 +67,6 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-
     }
 
     /**
@@ -76,15 +74,27 @@ class DoctorController extends Controller
      */
     public function edit(string $id)
     {
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update(Request $request, string $id)
     {
-
+        $fileNameImage = $request->image->getClientOriginalName();
+        $request->image->move(public_path('images/doctor'), $fileNameImage);
+        $user = User::findorFail($id);
+        $user->update([
+            'first_name' => $request->input('first_name'),
+            'middle_name' => $request->input('middle_name'),
+            'last_name' => $request->input('last_name'),
+            'contact_number' => $request->input('contact_number'),
+            'address' => $request->input('address'),
+            'email' => $request->input('email'),
+            'services' => $request->input('services'),
+            'image' => $request->image->getClientOriginalName()
+        ]);
+        return redirect()->back()->with('success', 'Doctor Update Successfully!');
     }
 
     /**

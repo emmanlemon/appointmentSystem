@@ -10,8 +10,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('doctor.update' , $doctor->id) }}" method="PUT" enctype="multipart/form-data">
+          <form action="{{ route('doctor.update' , $doctor->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+            {{ $doctor->id }}
             <div class="form-outline mb-2">
               <label class="form-label">First Name</label>
                 <input type="type" name="first_name" class="form-control form-control-lg"
@@ -78,9 +80,8 @@
 
             <div class="form-outline mb-2">
               <label for="formFileSm" class="form-label">Image</label>
-              <input class="form-control form-control-sm" name="image" value="{{ $doctor->image }}" accept="image/*" type="file" required>
+              <input class="form-control form-control-sm" name="image" accept="image/*" type="file" required>
               </div>
-              <input type="hidden" name="role" value="1">
 
         </div>
         <div class="modal-footer">
