@@ -37,6 +37,13 @@
         <span class="tooltip">Patient List</span>
       </li>
       <li>
+        <a href="{{ route('admin' , 'service') }}">
+            <i class='bx bx-cog' ></i>
+          <span class="links_name">Service List</span>
+        </a>
+        <span class="tooltip">Service List</span>
+      </li>
+      <li>
         <a href="#">
           <i class='bx bx-cog' ></i>
           <span class="links_name">Schedule</span>
@@ -53,16 +60,9 @@
       <li>
         <a href="{{ route('admin' , 'announcement') }}">
           <i class='bx bx-cog' ></i>
-          <span class="links_name">Announcements</span>
+          <span class="links_name">Maintenance</span>
         </a>
-        <span class="tooltip">Announcements</span>
-      </li>
-      <li>
-        <a href="{{ route('admin' , 'carousel') }}">
-          <i class='bx bx-cog' ></i>
-          <span class="links_name">Carousel</span>
-        </a>
-        <span class="tooltip">Carousel</span>
+        <span class="tooltip">Maintenance</span>
       </li>
       @else
       <li>
