@@ -69,11 +69,14 @@
 
           <div class="form-outline mb-2">
             <label class="form-label">Services</label>
-              <input type="type" name="services" class="form-control form-control-lg"
-                placeholder="Services"  value="{{ old('services') }}" required/>
-              @error('services')
-              <span class="text-danger">{{ $message }}</span>
-              @enderror
+            <select class="form-select" aria-label="Default select example" required>
+                @forelse($services as $service)
+                <option selected>Open this select menu</option>
+                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                @empty
+                <option value="" disabled>No Current Service.</option>
+              @endforelse
+              </select>
             </div>
 
             <div class="form-outline mb-2">
