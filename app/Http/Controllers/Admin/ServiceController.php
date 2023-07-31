@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class ServiceController extends Controller
 {
@@ -28,7 +29,8 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        dd('test');
+        Service::create($request->all());
+        return redirect()->back()->with('success', 'Service Created Successfully!');
     }
 
     /**

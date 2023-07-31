@@ -24,14 +24,15 @@
         </thead>
         <tbody>
         @php $count = 1; @endphp
-          @forelse($carousels as $carousel)
+          @forelse($services as $service)
           <tr>
             <th>{{ $count++ }}</th>
+            <th>{{ $service->name }}</th>
             <td colspan="2">
               <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal">Edit</button>
             </div>
-              <form action='{{ route('carousel.destroy' , $carousel->id) }}' method="post">
+              <form action='{{ route('services.destroy' , $service->id) }}' method="post">
                       <input class="btn btn-danger" type="submit" value="Delete" />
                       @method('delete')
                       @csrf

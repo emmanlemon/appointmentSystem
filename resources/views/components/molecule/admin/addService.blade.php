@@ -13,8 +13,8 @@
             @csrf
             <div class="form-outline mb-2">
               <label class="form-label">Name of Service</label>
-                <input type="type" name="title" class="form-control form-control-lg"
-                  placeholder="Enter Name of Service" required/>
+                <input type="type" class="form-control form-control-lg"
+                  placeholder="Enter Name of Service" name="name" required/>
             </div>
         </div>
         <div class="modal-footer">

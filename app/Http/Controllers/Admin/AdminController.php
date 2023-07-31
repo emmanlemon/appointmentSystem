@@ -8,7 +8,8 @@ use App\Models\User;
 use App\Models\Appointment;
 use App\Models\Announcement;
 use App\Models\Carousel;
-use DB;
+use App\Models\Service;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,7 @@ class AdminController extends Controller
      * Display a listing of the resource.
      */
     public function index($page = null)
-    {   
+    {
         $column = [
             'users.first_name as doctor_first_name',
             'users.middle_name as doctor_middle_name',
@@ -34,6 +35,7 @@ class AdminController extends Controller
         $clients = Appointment::all();
         $announcements = Announcement::all();
         $carousels = Carousel::all();
+        $services = Service::all();
         $appointmentLists = DB::table('appointments')
         ->select($column)
         ->leftJoin('users' , 'users.id' , 'appointments.doctor_id')
@@ -44,9 +46,9 @@ class AdminController extends Controller
         ->where('appointments.status' , 'APPROVED')
         ->get();
         if($page != null){
-            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports'));
+            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services'));
         }
-        return view('admin.index' , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports'));
+        return view('admin.index' , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services'));
     }
 
     /**
