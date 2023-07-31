@@ -14,6 +14,13 @@
     <div class="alert alert-success">{{ Session::get('success') }}</div>
     @endif
 
+    <div class="input-group rounded mb-1">
+        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search doctors...">
+        <span class="input-group-text border-0" id="search-addon">
+            <i class='bx bx-search-alt-2' ></i>
+    </span>
+      </div>
+
     <table class="table table-striped">
         <thead>
           <tr>
@@ -28,16 +35,17 @@
           <tr>
             <th>{{ $count++ }}</th>
             <th>{{ $service->name }}</th>
-            <td colspan="2">
-              <div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal">Edit</button>
-            </div>
-              <form action='{{ route('services.destroy' , $service->id) }}' method="post">
-                      <input class="btn btn-danger" type="submit" value="Delete" />
-                      @method('delete')
-                      @csrf
-              </form>
-            </td>
+                <td colspan="2" class="col">
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal" data-id="{{ $service->id }}">Edit</button>
+                      {{-- @include('components.molecule.doctor.editDoctor') --}}
+                      <form action='{{ route('services.destroy', $service->id) }}' method="post">
+                        <input class="btn btn-danger" type="submit" value="Delete" />
+                        @method('delete')
+                        @csrf
+                      </form>
+                    </div>
+                  </td>
           </tr>
           @empty
             <tr>
