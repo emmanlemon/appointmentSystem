@@ -5,8 +5,15 @@
     @if(Session::has('error'))
     <div class="alert alert-danger mt-2">{{ Session::get('error') }}</div>
     @endif
+    <div class="input-group rounded my-2">
+      <input type="text" id="searchInput" class="form-control p-3" placeholder="Search doctors...">
+      <span class="input-group-text border-0" id="search-addon">
+          <i class='bx bx-search-alt-2' ></i>
+  </span>
+    </div>
     @forelse ($doctors as $doctor)
-    <div class="card d-flex flex-row my-2 text-capitalize">
+    <div id="find_doctor">
+      <div class="card d-flex flex-row my-2 text-capitalize">
         <img src="{{ asset("images/doctor/$doctor->image") }}" height="200px" width="200px">
         <div class="text-body px-2 w-100">
             <h1>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</h1>
@@ -17,6 +24,7 @@
         <div class="d-flex align-items-center mx-2">
             <button class="btn btn-primary" data-toggle="modal" data-target="#appointmentModal{{ $doctor->id }}">Book An Appointment</button>
         </div>
+    </div>
     </div>
 
     <!-- Modal -->

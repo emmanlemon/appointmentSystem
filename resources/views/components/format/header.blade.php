@@ -1,5 +1,4 @@
 @include('extension.app')
-
 <nav class="navbar navbar-expand-lg p-1 border-bottom border-info" style="background-color:#329dc7;">
     <a class="navbar-brand" href="#" style="color:white; text-shadow: 1px 1px 1px black; font-weight: bold;">
         <img src="{{ asset('images/logoMBP.png') }}" class="img-fluid" style="width: 100px; height: 100px;">
@@ -47,3 +46,14 @@
         </ul>
     </div>
 </nav>
+
+<script>
+    $(document).ready(function() {
+      $("#searchInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#find_doctor ").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
