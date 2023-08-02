@@ -13,7 +13,6 @@
           <form action="{{ route('doctor.update' , $doctor->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            {{ $doctor->id }}
             <div class="form-outline mb-2">
               <label class="form-label">First Name</label>
                 <input type="type" name="first_name" class="form-control form-control-lg"

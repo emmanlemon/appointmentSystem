@@ -54,7 +54,7 @@ class DoctorController extends Controller
             'contact_number' => $request->input('contact_number'),
             'address' => $request->input('address'),
             'email' => $request->input('email'),
-            'services' => $request->input('services'),
+            'service_id' => $request->input('service_id'),
             'password' => $encrypted,
             'role' => $request->input('role'),
             'image' => $request->image->getClientOriginalName()
@@ -91,7 +91,7 @@ class DoctorController extends Controller
             'contact_number' => $request->input('contact_number'),
             'address' => $request->input('address'),
             'email' => $request->input('email'),
-            'services' => $request->input('services'),
+            'service_id' => $request->input('service_id'),
             'image' => $request->image->getClientOriginalName()
         ]);
         return redirect()->back()->with('success', 'Doctor Update Successfully!');
