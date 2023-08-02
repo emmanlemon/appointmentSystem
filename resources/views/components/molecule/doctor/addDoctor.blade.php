@@ -69,7 +69,7 @@
 
           <div class="form-outline mb-2">
             <label class="form-label">Services</label>
-            <select class="form-select" aria-label="Default select example" required>
+            <select class="form-select" name="service_id" aria-label="Default select example" required>
                 @forelse($services as $service)
                 <option selected>Open this select menu</option>
                 <option value="{{ $service->id }}">{{ $service->name }}</option>
