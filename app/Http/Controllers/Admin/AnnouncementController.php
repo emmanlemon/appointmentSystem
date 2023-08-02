@@ -30,7 +30,6 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         $fileNameImage = $request->image->getClientOriginalName();
-        $filePathImage = 'images/announcement' . $fileNameImage;
         $request->image->move(public_path('images/announcement'), $fileNameImage);
         Announcement::create([
             'title' => $request->title,
