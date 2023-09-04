@@ -21,4 +21,7 @@
     font-weight: bold;
     letter-spacing: 1px;
   }
+  .modal-backdrop {
+    z-index: -1;
+  }
 

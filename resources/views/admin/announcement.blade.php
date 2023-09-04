@@ -1,5 +1,6 @@
-@include(('components.molecule.admin.addCarousel'))
-@include(('components.molecule.admin.addAnnouncement'))
+@include('layout')
+@include('components.molecule.admin.addCarousel')
+@include('components.molecule.admin.addAnnouncement')
 @extends('components.format.sidebarNavigation')
 <title>Admin Announcement</title>
 @section('sideBarNavigation')

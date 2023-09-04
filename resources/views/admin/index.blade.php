@@ -1,3 +1,4 @@
+@include('layout')
 @extends('components.format.sidebarNavigation')
 <title>Admin Dashboard</title>
 @section('sideBarNavigation')

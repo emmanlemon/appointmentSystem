@@ -1,4 +1,4 @@
-@include('extension.app')
+@include('layout')
 <link rel="stylesheet" style="text/css" href="{{ url('css/sideBarNavigation.css') }}">
 <div class="sidebar">
     <img src="{{ asset('images/logoMBP.png') }}"

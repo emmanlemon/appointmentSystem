@@ -1,3 +1,4 @@
+@include('layout')
 @include('components.molecule.admin.addService')
 @extends('components.format.sidebarNavigation')
 <title>Admin Carousel</title>
@@ -15,7 +16,7 @@
     @endif
 
     <div class="input-group rounded mb-1">
-        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search doctors...">
+        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search Service...">
         <span class="input-group-text border-0" id="search-addon">
             <i class='bx bx-search-alt-2' ></i>
     </span>
@@ -37,8 +38,8 @@
             <th>{{ $service->name }}</th>
                 <td colspan="2" class="col">
                     <div class="d-flex gap-2">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal" data-id="{{ $service->id }}">Edit</button>
-                      {{-- @include('components.molecule.doctor.editDoctor') --}}
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editServiceModal{{ $service->id }}" data-id="{{ $service->id }}">Edit</button>
+                        @include('components.molecule.admin.editService')
                       <form action='{{ route('services.destroy', $service->id) }}' method="post">
                         <input class="btn btn-danger" type="submit" value="Delete" />
                         @method('delete')

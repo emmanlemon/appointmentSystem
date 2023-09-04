@@ -54,7 +54,11 @@ class ServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $service = Service::findorFail($id);
+        $service->update([
+            'name' => $request->input('name')
+        ]);
+        return redirect()->back()->with('success', 'Service Update Successfully!');
     }
 
     /**

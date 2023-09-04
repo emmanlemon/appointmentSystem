@@ -1,3 +1,4 @@
+@include('layout')
 @include('components.format.header')
 <title>MBP Dashboard</title>
 {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

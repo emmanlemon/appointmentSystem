@@ -1,3 +1,4 @@
+@include('layout')
 @extends('components.format.sidebarNavigation')
 <title>Admin Appointment List</title>
 @section('sideBarNavigation')
@@ -12,7 +13,7 @@
             <th scope="col">Address</th>
             <th scope="col">Contact Number</th>
             <th scope="col">Doctor Full Name</th>
-            <th scope="col">Preffered Date & Time</th> 
+            <th scope="col">Preffered Date & Time</th>
             <th scope="col">Status</th>
           </tr>
         </thead>

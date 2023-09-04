@@ -1,9 +1,16 @@
+@include('layout')
 @extends('components.format.sidebarNavigation')
 <title>Admin Patient List</title>
 @section('sideBarNavigation')
 <section class="home-section">
    <div class="title"><span>Patient List</span></div>
    <div class="container">
+    <div class="input-group rounded my-2">
+        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search Patient...">
+        <span class="input-group-text border-0" id="search-addon">
+            <i class='bx bx-search-alt-2' ></i>
+    </span>
+      </div>
     <table class="table table-striped">
         <thead>
           <tr>
