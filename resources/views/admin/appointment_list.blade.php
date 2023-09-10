@@ -22,12 +22,12 @@
           @forelse($appointmentLists as $appointmentList)
           <tr>
             <th>{{ $count++ }}</th>
-            <td>{{ $appointmentList->user_first_name }} {{ $appointmentList->user_middle_name }} {{ $appointmentList->user_last_name }}</td>
+            <td>{{ $appointmentList->user_full_name }}</td>
             <td>{{ $appointmentList->address }}</td>
             <td>{{ $appointmentList->contact_number }}</td>
             <td>{{ $appointmentList->doctor_first_name }} {{ $appointmentList->doctor_middle_name }} {{ $appointmentList->doctor_last_name }}</td>
             <td>{{ $appointmentList->date }} {{ $appointmentList->time }}</td>
-            <td>{{ $appointmentList->status }}</td>
+            <td>{{ $appointmentList->status == 0 ? 'PENDING' : 'APPROVED' }}</td>
           </tr>
           @empty
             <tr>

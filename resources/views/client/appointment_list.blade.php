@@ -15,15 +15,15 @@
       </tr>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Full Name</th>
-        <th scope="col">Date of Birth</th>
+        <th scope="col">Name</th>
+        <th scope="col">Birthdate</th>
         <th scope="col">Gender</th>
         <th scope="col">Address</th>
         <th scope="col">Email</th>
-        <th scope="col">Contact Number</th>
-        <th scope="col">Preffered Date & Time</th>
-        <th scope="col">Status</th> 
-        <th colspan="2">Action</th> 
+        <th scope="col">Contact #</th>
+        <th scope="col">Date & Time</th>
+        <th scope="col">Status</th>
+        <th colspan="2">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -31,14 +31,14 @@
       @foreach ($client as $row)
       <tr>
         <th>{{ $count++ }}</th>
-        <td>{{ $row->first_name }} {{ $row->middle_name }} {{ $row->last_name }}</td>
+        <td>{{ $row->full_name }}</td>
         <td>{{ $row->date_of_birth }}</td>
         <td>{{ $row->gender }}</td>
         <td>{{ $row->address }}</td>
         <td>{{ $row->email }}</td>
         <td>{{ $row->contact_number }}</td>
         <td>{{ $row->date }} {{ $row->time }}</td>
-        <td>{{ $row->status }}</td>
+        <td>{{ $row->status === '1' ? 'APPROVED' : 'PENDING'}}</td>
         <td colspan="2>
             <div>
                 <button class="btn btn-success">Edit</button>
@@ -54,7 +54,7 @@
     </tbody>
   </table>
     @empty
-      <span class="p-5">No Appointment found.</span>  
+      <span class="p-5">No Appointment found.</span>
     @endforelse
 </div>
 @include('components.format.footer')

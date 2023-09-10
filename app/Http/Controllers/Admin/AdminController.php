@@ -22,16 +22,17 @@ class AdminController extends Controller
             'users.first_name as doctor_first_name',
             'users.middle_name as doctor_middle_name',
             'users.last_name as doctor_last_name',
-            'appointments.first_name as user_first_name',
-            'appointments.middle_name as user_middle_name',
-            'appointments.last_name as user_last_name',
+            'appointments.full_name as user_full_name',
             'appointments.date as date',
             'appointments.time as time',
             'appointments.address as address',
             'appointments.contact_number as contact_number',
             'appointments.status as status',
         ];
-        $doctors = User::where('role' , '=' , '1')->get();
+        $doctors = DB::table('users')->leftJoin('services as s', 's.id', '=', 'users.service_id')
+        ->select('*' , 'users.id as id')
+        ->where('users.role', '=', '1')
+        ->get();
         $clients = Appointment::all();
         $announcements = Announcement::all();
         $carousels = Carousel::all();
@@ -43,7 +44,7 @@ class AdminController extends Controller
         $reports = DB::table('appointments')
         ->select($column)
         ->leftJoin('users' , 'users.id' , 'appointments.doctor_id')
-        ->where('appointments.status' , 'APPROVED')
+        ->where('appointments.status' , 1)
         ->get();
         if($page != null){
             return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services'));

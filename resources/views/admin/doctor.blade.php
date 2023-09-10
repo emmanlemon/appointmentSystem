@@ -31,7 +31,7 @@
                     <th scope="col">Picture</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Phone Number</th>
+                    <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Services</th>
                     <th scope="col">Action</th>
@@ -47,9 +47,9 @@
                     <td>{{ $doctor->address }}</td>
                     <td>{{ $doctor->contact_number }}</td>
                     <td>{{ $doctor->email }}</td>
-                    <td>{{ $doctor->services }}</td>
+                    <td>{{ $doctor->name }}</td>
                     <td colspan="2" class="col">
-                      <div class="d-flex justify-content-between">
+                      <div class="d-flex gap-2 justify-content-between">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal{{ $doctor->id }}" data-id="{{ $doctor->id }}">Edit</button>
                         @include('components.molecule.doctor.editDoctor')
                         <form action='{{ route('doctor.destroy', $doctor->id) }}' method="post">

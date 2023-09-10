@@ -1,3 +1,4 @@
+@include('layout')
 @extends('components.format.sidebarNavigation')
 <title>Doctor Dashboard</title>
 @section('sideBarNavigation')

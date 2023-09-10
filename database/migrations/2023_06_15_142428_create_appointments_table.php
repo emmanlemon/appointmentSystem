@@ -21,21 +21,19 @@ return new class extends Migration
             $table->foreign('doctor_id')
                     ->references('id')->on('users')
                     ->onDelete('cascade');
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('last_name');
+            $table->string('full_name');
+            $table->string('age');
             $table->string('date_of_birth');
             $table->string('gender');
+            $table->string('marital_status');
             $table->string('contact_number');
             $table->string('address');
-            $table->string('city');
-            $table->string('province');
             $table->string('email');
             $table->string('date');
             $table->string('time');
-            $table->string('comments')->nullable();
+            $table->string('concern')->nullable();
             // Not Approved
-            $table->string('status')->default('PENDING');
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }

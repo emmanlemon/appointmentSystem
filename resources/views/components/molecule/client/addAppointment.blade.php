@@ -14,6 +14,8 @@
                     {{ $doctor->id }}
                     <input type="hidden" name="doctor_id" value="{{ $doctor->id }}">
                     <span class="title-header">Full Name</span>
+                    <input type="text" name="first_name" class="form-control form-control-lg" placeholder="First Name" required/>
+
                     <div class="d-flex flex-row gap-1 w-100">
                       <div class="form-outline mb-2">
                         <label class="form-label">First Name</label>

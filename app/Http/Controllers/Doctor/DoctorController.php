@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Appointment;
+use App\Models\Service;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,7 +20,7 @@ class DoctorController extends Controller
         $user = Session::get('loginId');
         $doctors = User::where('role', '=', '1')->get();
         $appointments = Appointment::where('doctor_id', '=', $user)->paginate(10);
-        $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('status', '=', 'APPROVED')->paginate(5);
+        $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('status', '=', 1)->paginate(5);
         if ($page != null) {
             return view('doctor.' . $page, compact('appointments', 'appointmentreports'));
         }

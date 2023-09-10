@@ -1,3 +1,4 @@
+@include('layout')
 @extends('components.format.sidebarNavigation')
 <title>Appointment List Doctor</title>
 @section('sideBarNavigation')
@@ -26,7 +27,7 @@
           @forelse($appointments as $appointment)
           <tr>
             <th>{{ $count++ }}</th>
-            <td>{{ $appointment->first_name }} {{ $appointment->middle_name }} {{ $appointment->last_name }}</td>
+            <td>{{ $appointment->full_name }}</td>
             <td>{{ $appointment->contact_number }}</td>
             <td>{{ $appointment->date }} {{ $appointment->time }}</td>
             <td>{{ $appointment->email }}</td>
@@ -35,12 +36,8 @@
                     @csrf
                     @method('PUT')
                     <select class="form-select" name="status">
-                    <option selected>{{ $appointment->status }}</option>
-                    @if($appointment->status == '0')
-                    <option value="APPROVED">APPROVED</option>
-                    @else
-                    <option value="PENDING">PENDING</option>
-                    @endif
+                        <option selected>{{ $appointment->status !=='0' ? 'APPROVED' : 'PENDING'}}</option>
+                        <option value="{{ $appointment->status === '0' ? '1' : '0'}}">{{ $appointment->status === '0' ? 'APPROVED' : 'PENDING'}}</option>
                     </select>
             </td>
             <td>

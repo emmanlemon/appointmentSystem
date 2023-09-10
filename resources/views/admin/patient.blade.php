@@ -11,15 +11,18 @@
             <i class='bx bx-search-alt-2' ></i>
     </span>
       </div>
+      <div class="table-responsive">
     <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Full Name</th>
+            <th scope="col">Name</th>
             <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+            <th scope="col">Status</th>
             <th scope="col">Address</th>
-            <th scope="col">Date of Birth</th>
-            <th scope="col">Contact Number</th>
+            <th scope="col">Birthdate</th>
+            <th scope="col">Contact</th>
             <th scope="col">Address</th>
             <th scope="col">Email</th>
           </tr>
@@ -29,12 +32,14 @@
           @forelse($clients as $client)
           <tr>
             <th>{{ $count++ }}</th>
-            <td>{{ $client->first_name }} {{ $client->middle_name }} {{ $client->last_name }}</td>
+            <td>{{ $client->full_name }}</td>
             <td>{{ $client->gender }}</td>
+            <td>{{ $client->age }}</td>
+            <td>{{ $client->marital_status }}</td>
             <td>{{ $client->address }}</td>
             <td>{{ $client->date_of_birth }}</td>
             <td>{{ $client->contact_number }}</td>
-            <td>{{ $client->city }} {{ $client->province }}</td>
+            <td>{{ $client->address }}</td>
             <td>{{ $client->email }}</td>
           </tr>
           @empty
@@ -44,6 +49,7 @@
           @endforelse
         </tbody>
       </table>
+      </div>
    </div>
 </section>
 @endsection

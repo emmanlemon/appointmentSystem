@@ -71,10 +71,10 @@
           <div class="form-outline mb-2">
             <label class="form-label">Services</label>
               <input type="type" name="services" class="form-control form-control-lg"
-                placeholder="Services"  value="{{ $doctor->services }}" required/>
-              @error('services')
+                placeholder="Services"  value="{{ $doctor->name }}" required/>
+              {{-- @error('services')
               <span class="text-danger">{{ $message }}</span>
-              @enderror
+              @enderror --}}
             </div>
 
             <div class="form-outline mb-2">

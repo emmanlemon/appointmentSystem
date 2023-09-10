@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Appointment;
-use Session;
+use Illuminate\Support\Facades\Session;
 use DB;
 
 class AppointmentController extends Controller
@@ -37,19 +37,17 @@ class AppointmentController extends Controller
             return redirect()->back()->with('error' , 'You need to login First.');
         }
         Appointment::create([
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name' => $request->last_name,
+            'full_name' => $request->full_name,
             'gender' => $request->gender,
+            'marital_status' => $request->marital_status,
+            'age' => $request->age,
             'address' => $request->address,
             'date_of_birth' => $request->date_of_birth,
             'contact_number' => $request->contact_number,
-            'city' => $request->city,
-            'province' => $request->province,       
             'email' => $request->email,
             'date' => $request->date,
             'time' => $request->time,
-            'comments' => $request->comments,
+            'concern' => $request->concern,
             'user_id' => $user,
             'doctor_id' => $request->doctor_id
         ]);

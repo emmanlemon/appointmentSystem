@@ -35,8 +35,11 @@
                     <form action="{{ route('appointment.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="doctor_id" value="{{ $doctor->id }}">
-                        <span class="title-header">Full Name</span>
-                        <div class="d-flex flex-row gap-1 w-100">
+                        <div class="my-2">
+                            <span class="title-header">Full Name</span>
+                            <input type="text" name="full_name" class="form-control form-control-lg" placeholder="Full Name" required/>
+                        </div>
+                        {{-- <div class="d-flex flex-row gap-1 w-100">
                           <div class="form-outline mb-2">
                             <label class="form-label">First Name</label>
                             <input type="text" name="first_name" class="form-control form-control-lg" placeholder="First Name" required/>
@@ -49,13 +52,27 @@
                             <label class="form-label">Last Name</label>
                             <input type="text" name="last_name" class="form-control form-control-lg" placeholder="Last Name" required/>
                           </div>
+                        </div> --}}
+                        <div class="my-2">
+                            <span class="title-header">Age</span>
+                            <input type="number" name="age" class="form-control form-control-lg" placeholder="Age" required/>
+                        </div>
+                        <div class="my-2">
+                                <label class="form-label">Marital Status</label>
+                                <select class="form-select" name="marital_status">
+                                  <option value="Single">Single</option>
+                                  <option value="Married">Married</option>
+                                  <option value="Separated">Separated</option>
+                                  <option value="Divorced">Divorced</option>
+                                  <option value="Widowed">Widowed</option>
+                                </select>
                         </div>
                         <div class="d-flex flex-row gap-1">
                           <div class="form-outline mb-2">
                             <label class="form-label">Date of Birth</label>
                             <input type="date" name="date_of_birth" class="form-control form-control-lg" required/>
                           </div>
-                          <div class="form-outline mb-2 w-100">
+                          <div class="form-outline mb-2 w-100 h-100">
                             <label class="form-label">Gender</label>
                             <select class="form-select" name="gender">
                               <option value="Male">Male</option>
@@ -63,9 +80,10 @@
                             </select>
                           </div>
                         </div>
-                        <span class="title-header">Address</span>
-                        <div class="fullname d-flex flex-row gap-1">
-                          <div class="form-outline mb-2">
+                        <div class="my-2">
+                            <span class="title-header">Address</span>
+                            <input type="text" name="address" class="form-control form-control-lg" placeholder="Address" required/>
+                          {{-- <div class="form-outline mb-2">
                             <label class="form-label">Street Address</label>
                             <input type="text" name="address" class="form-control form-control-lg" placeholder="Street Address" required/>
                           </div>
@@ -76,7 +94,7 @@
                           <div class="form-outline mb-2">
                             <label class="form-label">Province</label>
                             <input type="text" name="province" class="form-control form-control-lg" placeholder="Province" required/>
-                          </div>
+                          </div> --}}
                         </div>
                         <div class="fullname d-flex flex-row gap-1">
                           <div class="form-outline mb-2">
@@ -99,8 +117,8 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label>Additional Information/Comments</label>
-                          <textarea class="form-control" name="comments" rows="4"></textarea>
+                          <label>Additional Information/Concern</label>
+                          <textarea class="form-control" name="concern" rows="4"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -112,7 +130,7 @@
         </div>
     </div>
     @empty
-        
+
     @endforelse
     <div class="d-flex justify-content-end">{{ $doctors->links() }}</div>
 </div>

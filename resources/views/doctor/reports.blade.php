@@ -1,3 +1,4 @@
+@include('layout')
 @extends('components.format.sidebarNavigation')
 <title>Reports Doctor</title>
 @section('sideBarNavigation')
@@ -15,9 +16,9 @@
            <th scope="col">#</th>
            <th scope="col">Full Name</th>
            <th scope="col">Phone Number</th>
+           <th scope="col">Address</th>
            <th scope="col">Prefered Date and Time</th>
            <th scope="col">Email</th>
-           <th scope="col">Status</th>
          </tr>
        </thead>
        <tbody>
@@ -25,11 +26,11 @@
          @forelse($appointmentreports as $appointment)
          <tr>
           <th>{{ $count++ }}</th>
-          <td>{{ $appointment->first_name }} {{ $appointment->middle_name }} {{ $appointment->last_name }}</td>
+          <td>{{ $appointment->full_name }}</td>
+          <td>{{ $appointment->address }}</td>
            <td>{{ $appointment->contact_number }}</td>
            <td>{{ $appointment->date }} {{ $appointment->time }}</td>
            <td>{{ $appointment->email }}</td>
-           <td>{{ $appointment->status }}</td>
          </tr>
          @empty
            <tr>
