@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\Session;
-use DB;
+use App\Notifications\AppointmentNofication;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
@@ -33,8 +35,8 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $user = Session::get('loginId');
-        if(empty($user)){
-            return redirect()->back()->with('error' , 'You need to login First.');
+        if (empty($user)) {
+            return redirect()->back()->with('error', 'You need to login First.');
         }
         Appointment::create([
             'full_name' => $request->full_name,
@@ -51,7 +53,7 @@ class AppointmentController extends Controller
             'user_id' => $user,
             'doctor_id' => $request->doctor_id
         ]);
-        return redirect()->back()->with('msg' , 'Send Successfully');
+        return redirect()->back()->with('msg', 'Send Successfully');
     }
 
     /**
@@ -75,10 +77,26 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
+        $column = [
+            '*'
+            , 'appointments.age as age'
+            , 'appointments.id as id', 'appointments.address as address'
+            , 'appointments.email as email'
+        ];
+
         $user = Session::get('role');
-        if($user == '1'){
-            $appointment->status = $request->input('status');
+        if ($user == '1') {
+            $data = DB::table('appointments')
+                ->select($column)
+                ->leftJoin('users', 'users.id', 'appointments.doctor_id')
+                ->where('appointments.id' , $appointment->id)
+                ->first();
+            $appointment->status = $request->input('status') === 'PENDING' ? '0' : '1';
             $appointment->save();
+
+            Notification::route('mail', $data->email)
+                ->notify(new AppointmentNofication($data));
+
             return redirect()->back()->with('msg', 'Update Successfully');
         }
     }

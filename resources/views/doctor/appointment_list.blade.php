@@ -36,8 +36,8 @@
                     @csrf
                     @method('PUT')
                     <select class="form-select" name="status">
-                        <option selected>{{ $appointment->status !=='0' ? 'APPROVED' : 'PENDING'}}</option>
-                        <option value="{{ $appointment->status === '0' ? '1' : '0'}}">{{ $appointment->status === '0' ? 'APPROVED' : 'PENDING'}}</option>
+                        <option selected>{{ $appointment->status != '0' ? 'APPROVED' : 'PENDING'}}</option>
+                        <option value="{{  $appointment->status == '0' ? 'APPROVED' : 'PENDING'}}">{{  $appointment->status == '0' ? 'APPROVED' : 'PENDING'}}</option>
                     </select>
             </td>
             <td>

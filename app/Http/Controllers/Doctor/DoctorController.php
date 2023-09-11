@@ -20,7 +20,7 @@ class DoctorController extends Controller
         $user = Session::get('loginId');
         $doctors = User::where('role', '=', '1')->get();
         $appointments = Appointment::where('doctor_id', '=', $user)->paginate(10);
-        $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('status', '=', 1)->paginate(5);
+        $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('appointments.status', '=', 1)->paginate(5);
         if ($page != null) {
             return view('doctor.' . $page, compact('appointments', 'appointmentreports'));
         }
