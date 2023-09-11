@@ -31,7 +31,7 @@
 <body>
     <div style="background-color:#ffffff;padding:0;margin:0 auto;font-weight:200;width:100%!important">
         <div align="center" style="margin:0 auto;max-width:768px;">
-            <img src="{{ asset('images/logoMBP.png') }}" style="width:17rem;">
+            <img src="https://raw.githubusercontent.com/emmanlemon/appointmentSystem/f2c69f87b26b582d37dfe874297842fea68ea329/public/images/logoMBP.png" style="width:17rem;">
             <hr>
             <div class="content">
                 <p>Dear Patient,</p>
