@@ -39,7 +39,7 @@
     </div>
     @foreach ($carousels as $carousel)
     <div class="carousel-item">
-      <img src="{{ asset("images/announcement/$carousel->image") }}" width="100%" height="600vh" alt="...">
+      <img src="{{ asset("/images/carousel/$carousel->image") }}" width="100%" height="600vh" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>...</h5>
         <p>...</p>

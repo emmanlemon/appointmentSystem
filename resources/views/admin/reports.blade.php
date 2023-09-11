@@ -22,12 +22,12 @@
           @forelse($reports as $report)
           <tr>
             <th>{{ $count++ }}</th>
-            <td>{{ $report->user_first_name }} {{ $report->user_middle_name }} {{ $report->user_last_name }}</td>
+            <td>{{ $report->user_full_name }}</td>
             <td>{{ $report->address }}</td>
             <td>{{ $report->contact_number }}</td>
             <td>{{ $report->doctor_first_name }} {{ $report->doctor_middle_name }} {{ $report->doctor_last_name }}</td>
             <td>{{ $report->date }} {{ $report->time }}</td>
-            <td>{{ $report->status }}</td>
+            <td>{{ $report->status === '0' ? 'PENDING' : 'APPROVED' }}</td>
           </tr>
           @empty
             <tr>
