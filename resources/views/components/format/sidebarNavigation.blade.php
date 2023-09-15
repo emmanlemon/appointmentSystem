@@ -24,36 +24,36 @@
       @if(Session::get('role') == 2)
      <li>
        <a href="{{ route('admin' , 'doctor') }}">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Doctor</span>
+        <i class='bx bx-user-circle' ></i>
+        <span class="links_name">Doctor</span>
        </a>
        <span class="tooltip">Doctor</span>
      </li>
      <li>
         <a href="{{ route('admin' , 'patient') }}">
-            <i class='bx bx-cog' ></i>
-          <span class="links_name">Patient List</span>
+            <i class='bx bx-plus-medical'></i>
+        <span class="links_name">Patient List</span>
         </a>
         <span class="tooltip">Patient List</span>
       </li>
       <li>
         <a href="{{ route('admin' , 'service') }}">
-            <i class='bx bx-cog' ></i>
-          <span class="links_name">Service List</span>
+            <i class='bx bxs-capsule' ></i>
+            <span class="links_name">Service List</span>
         </a>
         <span class="tooltip">Service List</span>
       </li>
       <li>
         <a href="#">
-          <i class='bx bx-cog' ></i>
-          <span class="links_name">Schedule</span>
+            <i class='bx bxs-calendar' ></i>
+            <span class="links_name">Schedule</span>
         </a>
         <span class="tooltip">Schedule</span>
       </li>
       <li>
         <a href="{{ route('admin' , 'appointment_list') }}">
-          <i class='bx bx-cog' ></i>
-          <span class="links_name">Appointment List</span>
+            <i class='bx bxs-envelope' ></i>
+            <span class="links_name">Appointment List</span>
         </a>
         <span class="tooltip">Appointment List</span>
       </li>
@@ -82,15 +82,15 @@
       @endif
       <li>
         <a href="{{ Session::get('role') != 1 ? route('admin', 'reports') : route('doctor' , 'reports') }}">
-          <i class='bx bx-cog' ></i>
-          <span class="links_name">Report</span>
+            <i class='bx bxs-report' ></i>
+            <span class="links_name">Report</span>
         </a>
         <span class="tooltip">Report</span>
       </li>
       <li>
         <a href="{{ route('auth.logout') }}">
-          <i class='bx bx-cog' ></i>
-          <span class="links_name">Logout</span>
+            <i class='bx bx-log-out' ></i>
+            <span class="links_name">Logout</span>
         </a>
         <span class="tooltip">Logout</span>
       </li>

@@ -25,3 +25,55 @@
     z-index: -1;
   }
 
+  /* choose sepnas */
+.container_choose{
+	background-color:rgba(252, 252, 252, 0.897);
+	padding: 10px;
+  }
+  .title_area{
+	display: grid;
+	place-items: center;
+	text-align: center;
+	margin: .5%;
+  }
+  .title_area p{
+	font-size: 3em;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px #329dc7 ,2px 2px 2px green;
+	padding: 1.5%;
+	border-bottom: 2px outset;
+	border-image: linear-gradient(to right, #329dc7, green) 1;
+  }
+  .title_area span{
+	background-color: red;
+  }
+  .row{
+	display: flex;
+	flex:wrap;
+	flex-direction: row;
+  }
+  .choose_sepnas{
+	display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .container_icon h3{
+	font-weight: 800;
+  }
+  .whyus_icon span{
+	color: white;
+	font-size: 4em;
+	border-radius: 50%;
+	padding: 40px;
+	margin: 2px;
+	background-color: #329dc7;
+	transition: 400ms ease-in-out;
+  }
+  .container_icon{
+	align-items: center;
+	text-align: center;
+  }
+  .icon:hover{
+	transform: scale(.89);
+  }
