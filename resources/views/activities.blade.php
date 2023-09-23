@@ -1,6 +1,10 @@
 @include('components.format.header')
 <title>Activities Dashboard</title>
 <div class="container min-vh-100 mt-2">
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/volunteer.jpeg') }}); background-size: 100% 250px; background-repeat: no-repeat;">
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">VOLUNTEER & </p>
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">ACTIVITIES</p>
+    </div>
     <div class="title">Activities</div>
     <div class="mt-2">
         <span class="">World Surgical Foundation PH @ Mbp HospitalOctober 9, 2018</span>

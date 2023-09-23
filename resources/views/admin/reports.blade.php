@@ -5,6 +5,12 @@
 <section class="home-section">
    <div class="title"><span>Report List</span></div>
    <div class="container">
+    <div class="input-group rounded my-2">
+        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search patient...">
+        <span class="input-group-text border-0" id="search-addon">
+            <i class='bx bx-search-alt-2' ></i>
+    </span>
+      </div>
     <table class="table table-striped">
         <thead>
           <tr>

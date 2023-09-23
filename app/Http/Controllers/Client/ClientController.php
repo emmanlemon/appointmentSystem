@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Appointment;
-use Session; 
-use DB;
-
+use App\Models\Carousel;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 class ClientController extends Controller
 {
     /**
@@ -31,11 +31,12 @@ class ClientController extends Controller
         ->get()->groupBy(function($data) {
             return $data->doctor_first_name .' '. $data->doctor_middle_name.' '.$data->doctor_last_name ;
         });
+        $carousels = Carousel::all();
         $doctors = User::where('role' , '=' , '1')->paginate(5);
         if($page != null){
-            return view('client.'.$page , compact('doctors' ,'appointments'));
+            return view('client.'.$page , compact('doctors' ,'appointments', 'carousels'));
         }
-        return view('client.index');
+        return view('client.index' , compact('carousels'));
     }
 
     /**

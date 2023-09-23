@@ -1,17 +1,21 @@
 @include('components.format.header')
 <title>Register Form</title>
-<section class="vh-150 min-h-full">
+<section  style="background-image: url('images/MBP-Background.jpg');">
     <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-6 col-xl-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        {{-- <div class="col-md-9 col-lg-6 col-xl-5">
           <img src="{{ asset('images/login-image.jpg')  }}"
             class="img-fluid" alt="Sample image">
+        </div> --}}
+        <div class="col-md-9 col-lg-6 col-xl-5 text-white ">
+            <h1 style="font-size: 60px; text-shadow: 2px 2px 2px black;">YOUR RELIABLE</h1>
+            <h1 style="font-size: 50px; text-shadow: 2px 2px 2px black;">HEALTH CARE COMPANION</h1>
         </div>
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 bg-white p-4 my-4 rounded shadow">
           <form action="{{ route('register') }}" method="post" enctype="multipart/form">
             @csrf
-            <h2>Register</h2>
-            
+            <h1 class="font-weight-bold text-uppercase">Register</h1>
+
              <!-- Name input -->
              <div class="form-outline mb-2">
                 <label class="form-label">First Name</label>
@@ -21,7 +25,7 @@
                       <span class="text-danger">{{ $message }}</span>
                   @enderror
             </div>
-            
+
             <div class="form-outline mb-2">
               <label class="form-label">Middle Name</label>
                 <input type="type" name="middle_name" class="form-control form-control-lg"
@@ -66,7 +70,7 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-            
+
             <!-- Email input -->
             <div class="form-outline mb-2">
             <label class="form-label" for="form3Example3">Email address</label>
@@ -76,7 +80,7 @@
               <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
-  
+
             <!-- Password input -->
             <div class="form-outline mb-2">
                 <label class="form-label" for="form3Example3">Password</label>
@@ -94,10 +98,14 @@
                 <button type="submit" class="btn btn-secondary btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Reset</button>
             </div>
-  
+
+            <div>
+                <p class="small fw-bold mt-2 pt-1 mb-0">You have an account? <a href="{{ route('auth.login') }}"
+                    class="link-danger">Login</a></p>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </section>
-  {{-- @include('components.format.footer') --}}
+  @include('components.format.footer')

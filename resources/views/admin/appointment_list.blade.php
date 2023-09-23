@@ -5,6 +5,12 @@
 <section class="home-section">
    <div class="title"><span>Appointment List</span></div>
    <div class="container">
+    <div class="input-group rounded my-2">
+        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search patient...">
+        <span class="input-group-text border-0" id="search-addon">
+            <i class='bx bx-search-alt-2' ></i>
+    </span>
+      </div>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -26,7 +32,7 @@
             <td>{{ $appointmentList->address }}</td>
             <td>{{ $appointmentList->contact_number }}</td>
             <td>{{ $appointmentList->doctor_first_name }} {{ $appointmentList->doctor_middle_name }} {{ $appointmentList->doctor_last_name }}</td>
-            <td>{{ $appointmentList->date }} {{ $appointmentList->time }}</td>
+            <td>{{ $appointmentList->date }} {{ $appointmentList->time }} </td>
             <td>{{ $appointmentList->status == 0 ? 'PENDING' : 'APPROVED' }}</td>
           </tr>
           @empty

@@ -15,7 +15,7 @@
             <div class="form-outline mb-2">
               <label class="form-label">First Name</label>
                 <input type="type" name="first_name" class="form-control form-control-lg"
-                  placeholder="Enter Name" value="{{ old('first_name') }}" required/>
+                  placeholder="Enter First Name" value="{{ old('first_name') }}" required/>
                 @error('first_name')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -24,7 +24,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Middle Name</label>
               <input type="type" name="middle_name" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('middle_name') }}" required/>
+                placeholder="Enter Middle Name" value="{{ old('middle_name') }}" required/>
               @error('middle_name')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -33,7 +33,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Last Name</label>
               <input type="type" name="last_name" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('last_name') }}" required/>
+                placeholder="Enter Last Name" value="{{ old('last_name') }}" required/>
               @error('last_name')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -42,7 +42,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Contact number</label>
               <input type="type" name="contact_number" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('contact_number') }}" required/>
+                placeholder="Enter Contact Number (Optional)" value="{{ old('contact_number') }}"/>
               @error('contact_number')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -51,7 +51,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Address</label>
               <input type="type" name="address" class="form-control form-control-lg"
-                placeholder="Enter Name"  value="{{ old('address') }}" required/>
+                placeholder="Enter Address"  value="{{ old('address') }}" required/>
               @error('address')
                   <span class="text-danger">{{ $message }}</span>
               @enderror

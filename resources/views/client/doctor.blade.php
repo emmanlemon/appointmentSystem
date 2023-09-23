@@ -1,14 +1,23 @@
 @include('components.format.header')
 <title>Find Doctor</title>
 <div class="container min-vh-100 mt-2">
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/doctor.jpeg') }}); background-size: 100% 250px; background-repeat: no-repeat;">
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">BEST CHOICE </p>
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">FOR DOCTORS</p>
+    </div>
     <div class="title"> Find Doctor</div>
-    @if(Session::has('msg'))
-    <div class="alert alert-success mt-2">{{ Session::get('msg') }}</div>
-    @elseif(Session::has('delete'))
-    <div class="alert alert-danger mt-2">{{ Session::get('delete') }}</div>
+    @if(Session::has('error'))
+    <div class="alert alert-danger mt-2">{{ Session::get('error') }}</div>
     @endif
+    <div class="input-group rounded my-2">
+      <input type="text" id="searchInput" class="form-control p-3" placeholder="Search doctors...">
+      <span class="input-group-text border-0" id="search-addon">
+          <i class='bx bx-search-alt-2' ></i>
+  </span>
+    </div>
     @forelse ($doctors as $doctor)
-    <div class="card d-flex flex-row my-2 text-capitalize">
+    <div id="find_doctor">
+      <div class="card d-flex flex-row my-2 text-capitalize">
         <img src="{{ asset("images/doctor/$doctor->image") }}" height="200px" width="200px">
         <div class="text-body px-2 w-100">
             <h1>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</h1>
@@ -17,8 +26,9 @@
             <p class="p-0 m-0">Email: {{ $doctor->email }}</p>
         </div>
         <div class="d-flex align-items-center mx-2">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#appointmentModal{{ $doctor->id }}" data-id="{{ $doctor->id }}">Book An Appointment</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#appointmentModal{{ $doctor->id }}">Book An Appointment</button>
         </div>
+    </div>
     </div>
 
     <!-- Modal -->
@@ -39,20 +49,6 @@
                             <span class="title-header">Full Name</span>
                             <input type="text" name="full_name" class="form-control form-control-lg" placeholder="Full Name" required/>
                         </div>
-                        {{-- <div class="d-flex flex-row gap-1 w-100">
-                          <div class="form-outline mb-2">
-                            <label class="form-label">First Name</label>
-                            <input type="text" name="first_name" class="form-control form-control-lg" placeholder="First Name" required/>
-                          </div>
-                          <div class="form-outline mb-2">
-                            <label class="form-label">Middle Name</label>
-                            <input type="text" name="middle_name" class="form-control form-control-lg" placeholder="Middle Name" required/>
-                          </div>
-                          <div class="form-outline mb-2">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" name="last_name" class="form-control form-control-lg" placeholder="Last Name" required/>
-                          </div>
-                        </div> --}}
                         <div class="my-2">
                             <span class="title-header">Age</span>
                             <input type="number" name="age" class="form-control form-control-lg" placeholder="Age" required/>
@@ -67,12 +63,28 @@
                                   <option value="Widowed">Widowed</option>
                                 </select>
                         </div>
+                         {{-- <div class="d-flex flex-row gap-1 w-100">
+                            <div class="my-2">
+                                <span class="title-header">Age</span>
+                                <input type="number" name="age" class="form-control form-control-lg" placeholder="Age" required/>
+                            </div>
+                            <div class="my-2">
+                                    <label class="form-label">Marital Status</label>
+                                    <select class="form-select" name="marital_status">
+                                      <option value="Single">Single</option>
+                                      <option value="Married">Married</option>
+                                      <option value="Separated">Separated</option>
+                                      <option value="Divorced">Divorced</option>
+                                      <option value="Widowed">Widowed</option>
+                                    </select>
+                            </div>
+                        </div> --}}
                         <div class="d-flex flex-row gap-1">
                           <div class="form-outline mb-2">
                             <label class="form-label">Date of Birth</label>
                             <input type="date" name="date_of_birth" class="form-control form-control-lg" required/>
                           </div>
-                          <div class="form-outline mb-2 w-100 h-100">
+                          <div class="form-outline mb-2 w-100">
                             <label class="form-label">Gender</label>
                             <select class="form-select" name="gender">
                               <option value="Male">Male</option>
@@ -83,7 +95,10 @@
                         <div class="my-2">
                             <span class="title-header">Address</span>
                             <input type="text" name="address" class="form-control form-control-lg" placeholder="Address" required/>
-                          {{-- <div class="form-outline mb-2">
+                        </div>
+                        {{-- <span class="title-header">Address</span>
+                        <div class="fullname d-flex flex-row gap-1">
+                          <div class="form-outline mb-2">
                             <label class="form-label">Street Address</label>
                             <input type="text" name="address" class="form-control form-control-lg" placeholder="Street Address" required/>
                           </div>
@@ -94,8 +109,8 @@
                           <div class="form-outline mb-2">
                             <label class="form-label">Province</label>
                             <input type="text" name="province" class="form-control form-control-lg" placeholder="Province" required/>
-                          </div> --}}
-                        </div>
+                          </div>
+                        </div> --}}
                         <div class="fullname d-flex flex-row gap-1">
                           <div class="form-outline mb-2">
                             <label class="form-label">Email</label>
@@ -117,8 +132,8 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label>Additional Information/Concern</label>
-                          <textarea class="form-control" name="concern" rows="4"></textarea>
+                            <label>Additional Information/Concern</label>
+                            <textarea class="form-control" name="concern" rows="4"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

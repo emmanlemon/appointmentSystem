@@ -1,6 +1,10 @@
 @include('components.format.header')
 <title>About Us Dashboard</title>
 <div class="container min-vh-100 mt-2 mb-2">
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/about.jpg') }}); background-size: 100% 250px; background-repeat: no-repeat;">
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">HISTORY & </p>
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">MISSION VISSION</p>
+    </div>
     <div class="title">About Us</div>
     <div class="d-flex col my-2">
         <div class="img">

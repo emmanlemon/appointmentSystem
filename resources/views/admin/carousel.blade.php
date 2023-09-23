@@ -33,7 +33,7 @@
             <td><img src="{{ asset("images/carousel/$carousel->image") }}" alt="" height="200px" width="200px"></td>
             <td>{{ $carousel->title }}</td>
             <td>{{ $carousel->description }}</td>
-            <td>{{ $carousel->created_at }}</td>
+            <td>{{ date('F j, Y, g:i a', strtotime($carousel->created_at)) }}</td>
             <td colspan="2">
               <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal">Edit</button>

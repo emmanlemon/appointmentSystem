@@ -1,6 +1,10 @@
 @include('components.format.header')
 <title>Appointment List</title>
 <div class="container min-vh-100 mt-2">
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/appointment.jpeg') }}); background-size: 100% 250px; background-repeat: no-repeat;">
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">SCHEDULE YOUR</p>
+        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">APPOINTMENT TODAY</p>
+    </div>
     <div class="title">Appointment List</div>
     @if(Session::has('msg'))
     <div class="alert alert-success mt-2">{{ Session::get('msg') }}</div>
@@ -37,17 +41,23 @@
         <td>{{ $row->address }}</td>
         <td>{{ $row->email }}</td>
         <td>{{ $row->contact_number }}</td>
-        <td>{{ $row->date }} {{ $row->time }}</td>
-        <td>{{ $row->status === '1' ? 'APPROVED' : 'PENDING'}}</td>
-        <td colspan="2>
-            <div>
-                <button class="btn btn-success">Edit</button>
-            </div>
-            <form action='{{ route('appointment.destroy' , $row->id) }}' method="post">
-                    <input class="btn btn-danger" type="submit" value="Delete" />
+        <td>{{ date('F j, Y', strtotime($row->date)) }} {{ date('g:i a', strtotime($row->time)) }}</td>
+        <td><span class="{{ $row->status === '1' ? 'bg-success' : 'bg-primary'}} px-2 py-1 m-1 text-white rounded">{{ $row->status === '1' ? 'APPROVED' : 'PENDING'}}</span></td>
+        <td colspan="2" class="col">
+            <div class="d-flex gap-1 justify-content-between">
+                <div>
+                    <button class="btn btn-success">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <form action="{{ route('appointment.destroy', $row->id) }}" method="post">
+                    <button class="btn btn-danger float-right" type="submit">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
                     @method('delete')
                     @csrf
-            </form>
+                </form>
+            </div>
         </td>
       </tr>
      @endforeach
