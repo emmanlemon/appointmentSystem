@@ -77,3 +77,18 @@
   .icon:hover{
 	transform: scale(.89);
   }
+.title-header-services{
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 1px black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    font-size: 27px;
+    color: white;;
+margin-top: 10px;;
+    text-transform: uppercase;
+    background-color: #329dc7;
+}
+
+.title-header-services p{
+    text-align: center;
+}

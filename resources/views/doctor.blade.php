@@ -20,11 +20,11 @@
     <div id="find_doctor">
       <div class="card d-flex flex-row my-2 text-capitalize">
         <img src="{{ asset("images/doctor/$doctor->image") }}" height="200px" width="200px">
-        <div class="text-body px-2 w-100">
+        <div class="text-body px-2 w-100 p-0 m-0">
             <h1>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</h1>
-            <p class="p-0 m-0">Service: {{ $doctor->services }}</p>
-            <p class="p-0 m-0">Contact Number: {{ $doctor->contact_number }}</p>
-            <p class="p-0 m-0">Email: {{ $doctor->email }}</p>
+            <h4 class="p-0 m-0">{{ $doctor->name }}</h4>
+            {{-- <p class="p-0 m-0">Contact Number: {{ $doctor->contact_number }}</p>
+            <p class="p-0 m-0">Email: {{ $doctor->email }}</p> --}}
         </div>
         <div class="d-flex align-items-center mx-2">
             <button class="btn btn-primary" data-toggle="modal" data-target="#appointmentModal{{ $doctor->id }}">Book An Appointment</button>

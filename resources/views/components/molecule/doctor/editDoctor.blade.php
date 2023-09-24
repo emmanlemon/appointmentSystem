@@ -13,6 +13,7 @@
           <form action="{{ route('doctor.update' , $doctor->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+
             <div class="form-outline mb-2">
               <label class="form-label">First Name</label>
                 <input type="type" name="first_name" class="form-control form-control-lg"
@@ -70,11 +71,17 @@
 
           <div class="form-outline mb-2">
             <label class="form-label">Services</label>
-              <input type="type" name="services" class="form-control form-control-lg"
-                placeholder="Services"  value="{{ $doctor->name }}" required/>
-              {{-- @error('services')
-              <span class="text-danger">{{ $message }}</span>
-              @enderror --}}
+            <select class="form-select" name="service_id" aria-label="Default select example" required>
+                <option selected>Open this select menu</option>
+                @forelse($services as $service)
+                <option value="{{ $service->id }}" {{ $doctor->name == $service->name ? 'selected' : '' }}>
+                    {{ $service->name }}
+                </option>
+                {{-- <option value="{{ $service->id }}">{{ $service->name }}</option> --}}
+                @empty
+                <option value="" disabled>No Current Service.</option>
+              @endforelse
+              </select>
             </div>
 
             <div class="form-outline mb-2">

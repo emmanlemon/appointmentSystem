@@ -22,6 +22,13 @@
     </div>
 </div>
 
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Service</h5>
+        <p class="card-text">{{ $services->count() }}</p>
+        <a href="{{ route('admin' , 'service') }}" class="btn btn-primary">See Service List</a>
+</div>
+</div>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Announcements</h5>

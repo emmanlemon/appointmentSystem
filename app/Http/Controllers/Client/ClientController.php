@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Appointment;
+use App\Models\Announcement;
 use App\Models\Carousel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -32,11 +33,16 @@ class ClientController extends Controller
             return $data->doctor_first_name .' '. $data->doctor_middle_name.' '.$data->doctor_last_name ;
         });
         $carousels = Carousel::all();
-        $doctors = User::where('role' , '=' , '1')->paginate(5);
+        $announcements = Announcement::latest()->first();
+        $doctors = DB::table('users')->leftJoin('services as s', 's.id', '=', 'users.service_id')
+        ->select('*' , 'users.id as id')
+        ->where('users.role', '=', '1')
+        ->paginate(5);
+
         if($page != null){
-            return view('client.'.$page , compact('doctors' ,'appointments', 'carousels'));
+            return view('client.'.$page , compact('doctors' ,'appointments', 'carousels','announcements'));
         }
-        return view('client.index' , compact('carousels'));
+        return view('client.index' , compact('carousels','announcements'));
     }
 
     /**
