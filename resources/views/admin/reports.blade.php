@@ -32,7 +32,7 @@
             <td>{{ $report->address }}</td>
             <td>{{ $report->contact_number }}</td>
             <td>{{ $report->doctor_first_name }} {{ $report->doctor_middle_name }} {{ $report->doctor_last_name }}</td>
-            <td>{{ $report->date }} {{ $report->time }}</td>
+            <td>{{ date('F j, Y', strtotime($report->date)) }} {{ date('g:i a', strtotime($report->time)) }}</td>
             <td>{{ $report->status === '0' ? 'PENDING' : 'APPROVED' }}</td>
           </tr>
           @empty

@@ -7,6 +7,12 @@
    Patient Appointment Detail</span>
 </div>
 <div class="container">
+    <div class="input-group rounded my-2">
+        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search Patient...">
+        <span class="input-group-text border-0" id="search-addon">
+            <i class='bx bx-search-alt-2' ></i>
+    </span>
+      </div>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -30,7 +36,7 @@
             <td>{{ $appointment->gender }}</td>
             <td>{{ $appointment->contact_number }}</td>
             <td>{{ $appointment->email }}</td>
-            <td>{{ $appointment->date }} {{ $appointment->time }}</td>
+            <td>{{ date('F j, Y', strtotime($appointment->date)) }} {{ date('g:i a', strtotime($appointment->time)) }}</td>
             <td>{{ $appointment->concern }}</td>
           </tr>
           @empty

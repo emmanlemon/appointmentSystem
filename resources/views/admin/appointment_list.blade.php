@@ -32,7 +32,7 @@
             <td>{{ $appointmentList->address }}</td>
             <td>{{ $appointmentList->contact_number }}</td>
             <td>{{ $appointmentList->doctor_first_name }} {{ $appointmentList->doctor_middle_name }} {{ $appointmentList->doctor_last_name }}</td>
-            <td>{{ $appointmentList->date }} {{ $appointmentList->time }} </td>
+            <td>{{ date('F j, Y', strtotime($appointmentList->date)) }} {{ date('g:i a', strtotime($appointmentList->time)) }}</td>
             <td>{{ $appointmentList->status == 0 ? 'PENDING' : 'APPROVED' }}</td>
           </tr>
           @empty

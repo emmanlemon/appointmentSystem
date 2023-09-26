@@ -36,7 +36,7 @@
       <tr>
         <th>{{ $count++ }}</th>
         <td>{{ $row->full_name }}</td>
-        <td>{{ $row->date_of_birth }}</td>
+        <td>{{ date('F j, Y', strtotime($row->date_of_birth))}}</td>
         <td>{{ $row->gender }}</td>
         <td>{{ $row->address }}</td>
         <td>{{ $row->email }}</td>
@@ -46,17 +46,20 @@
         <td colspan="2" class="col">
             <div class="d-flex gap-1 justify-content-between">
                 <div>
-                    <button class="btn btn-success">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#editAppointmentModal{{ $row->id }}" data-id="{{ $row->id }}">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </button>
+                    @include('components.molecule.client.editAppointment')
                 </div>
-                <form action="{{ route('appointment.destroy', $row->id) }}" method="post">
-                    <button class="btn btn-danger float-right" type="submit">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                    @method('delete')
-                    @csrf
-                </form>
+                <div>
+                    <form action="{{ route('appointment.destroy', $row->id) }}" method="post">
+
+                        <button class="btn btn-danger" type="submit">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>  @csrf
+                        @method('delete')
+                    </form>
+                </div>
             </div>
         </td>
       </tr>

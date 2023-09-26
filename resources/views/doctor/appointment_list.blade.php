@@ -10,6 +10,12 @@
     @if(Session::has('msg'))
         <div class="alert alert-success">{{ Session::get('msg') }}</div>
     @endif
+    <div class="input-group rounded my-2">
+        <input type="text" id="searchInput" class="form-control p-3" placeholder="Search Patient...">
+        <span class="input-group-text border-0" id="search-addon">
+            <i class='bx bx-search-alt-2' ></i>
+    </span>
+      </div>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -29,13 +35,13 @@
             <th>{{ $count++ }}</th>
             <td>{{ $appointment->full_name }}</td>
             <td>{{ $appointment->contact_number }}</td>
-            <td>{{ $appointment->date }} {{ $appointment->time }}</td>
+            <td>{{ date('F j, Y', strtotime($appointment->date)) }} {{ date('g:i a', strtotime($appointment->time)) }}</td>
             <td>{{ $appointment->email }}</td>
             <td>
                 <form action="{{ route('appointment.update' , $appointment->id) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <select class="form-select" name="status">
+                    <select class="form-select" name="status" {{ $appointment->status != '0' ? 'disabled' : ''}}>
                         <option selected>{{ $appointment->status != '0' ? 'APPROVED' : 'PENDING'}}</option>
                         <option value="{{  $appointment->status == '0' ? 'APPROVED' : 'PENDING'}}">{{  $appointment->status == '0' ? 'APPROVED' : 'PENDING'}}</option>
                     </select>

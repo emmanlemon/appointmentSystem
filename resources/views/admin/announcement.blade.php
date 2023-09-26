@@ -38,9 +38,9 @@
             <td><a href="{{ $announcement->link }}" target="blank">{{ $announcement->link }}</a></td>
             <td>{{ date('F j, Y, g:i a', strtotime($announcement->created_at)) }}</td>
             <td colspan="2">
-              <div>
+              {{-- <div>
                   <button class="btn btn-success">Edit</button>
-              </div>
+              </div> --}}
               <form action='{{ route('announcement.destroy' , $announcement->id) }}' method="post">
                 <input class="btn btn-danger" type="submit" value="Delete" />
                 @method('delete')
@@ -81,9 +81,9 @@
                 <td>{{ $carousel->description }}</td>
                 <td>{{ date('F j, Y, g:i a', strtotime($carousel->created_at)) }}</td>
                 <td colspan="2">
-                  <div>
+                  {{-- <div>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal">Edit</button>
-                </div>
+                </div> --}}
                   <form action='{{ route('carousel.destroy' , $carousel->id) }}' method="post">
                           <input class="btn btn-danger" type="submit" value="Delete" />
                           @method('delete')

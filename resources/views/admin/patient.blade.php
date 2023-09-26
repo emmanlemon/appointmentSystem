@@ -37,7 +37,7 @@
             <td>{{ $client->age }}</td>
             <td>{{ $client->marital_status }}</td>
             <td>{{ $client->address }}</td>
-            <td>{{ $client->date_of_birth }}</td>
+            <td>{{ date('F j, Y', strtotime($client->date_of_birth)) }}</td>
             <td>{{ $client->contact_number }}</td>
             <td>{{ $client->address }}</td>
             <td>{{ $client->email }}</td>

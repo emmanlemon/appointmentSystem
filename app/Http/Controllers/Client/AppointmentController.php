@@ -97,7 +97,22 @@ class AppointmentController extends Controller
             Notification::route('mail', $data->email)
                 ->notify(new AppointmentNofication($data));
 
-            return redirect()->back()->with('msg', 'Update Successfully');
+            return redirect()->back()->with('msg', 'Updated Successfully');
+        }else if ($user == '0'){
+           $appointment->update([
+                "full_name" => $request->full_name,
+                "age" => $request->age,
+                "marital_status" => $request->marital_status,
+                "date_of_birth" => $request->date_of_birth,
+                "gender" => $request->gender,
+                "address" => $request->address,
+                "email" => $request->email,
+                "contact_number" => $request->contact_number,
+                "date" => $request->date,
+                "time" => $request->time,
+                "concern" => $request->concern
+            ]);
+            return redirect()->back()->with('msg', 'Appointment Data Updated Successfully');
         }
     }
 
