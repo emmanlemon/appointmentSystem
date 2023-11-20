@@ -1,20 +1,21 @@
 @include('components.format.header')
-<title>Find Doctor</title>
+<title>Book an Appoinment</title>
 <div class="container min-vh-100 mt-2">
 
-    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/doctor.jpeg') }}); background-size: 100% 250px; background-repeat: no-repeat;">
-        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">BEST CHOICE </p>
-        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">FOR DOCTORS</p>
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/find.png') }}); background-size: 100% 200px; background-repeat: no-repeat;">
     </div>
-    <div class="title"> Find Doctor</div>
     @if(Session::has('error'))
     <div class="alert alert-danger mt-2">{{ Session::get('error') }}</div>
     @endif
-    <div class="input-group rounded my-2">
-      <input type="text" id="searchInput" class="form-control p-3" placeholder="Search doctors...">
-      <span class="input-group-text border-0" id="search-addon">
-          <i class='bx bx-search-alt-2' ></i>
-  </span>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="input-group rounded my-2">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search doctors...">
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class='bx bx-search-alt-2'></i>
+                </span>
+            </div>
+        </div>
     </div>
     @forelse ($doctors as $doctor)
     <div id="find_doctor">

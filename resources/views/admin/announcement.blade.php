@@ -5,7 +5,7 @@
 <title>Admin Announcement</title>
 @section('sideBarNavigation')
 <section class="home-section">
-   <div class="title"><span>Maintenance</span></div>
+   <div class="title"><span>Content Management</span></div>
    <div class="container">
     @if(Session::has('delete'))
     <div class="alert alert-danger">{{ Session::get('delete') }}</div>

@@ -44,13 +44,6 @@
         <span class="tooltip">Service List</span>
       </li>
       <li>
-        <a href="#">
-            <i class='bx bxs-calendar' ></i>
-            <span class="links_name">Schedule</span>
-        </a>
-        <span class="tooltip">Schedule</span>
-      </li>
-      <li>
         <a href="{{ route('admin' , 'appointment_list') }}">
             <i class='bx bxs-envelope' ></i>
             <span class="links_name">Appointment List</span>
@@ -60,9 +53,9 @@
       <li>
         <a href="{{ route('admin' , 'announcement') }}">
           <i class='bx bx-cog' ></i>
-          <span class="links_name">Maintenance</span>
+          <span class="links_name">Content Management</span>
         </a>
-        <span class="tooltip">Maintenance</span>
+        <span class="tooltip">Content Management</span>
       </li>
       @else
       <li>

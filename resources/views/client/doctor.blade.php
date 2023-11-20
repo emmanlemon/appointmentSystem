@@ -1,27 +1,31 @@
 @include('components.format.header')
-<title>Find Doctor</title>
+<title>Book an Appointment</title>
 <div class="container min-vh-100 mt-2">
-    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/doctor.jpeg') }}); background-size: 100% 250px; background-repeat: no-repeat;">
-        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">BEST CHOICE </p>
-        <p class="p-0 m-0" style="font-size: 40px; text-shadow:2px 2px 2px white;">FOR DOCTORS</p>
+
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/find.png') }}); background-size: 100% 200px; background-repeat: no-repeat;">
     </div>
-    <div class="title"> Find Doctor</div>
     @if(Session::has('error'))
     <div class="alert alert-danger mt-2">{{ Session::get('error') }}</div>
     @endif
-    <div class="input-group rounded my-2">
-      <input type="text" id="searchInput" class="form-control p-3" placeholder="Search doctors...">
-      <span class="input-group-text border-0" id="search-addon">
-          <i class='bx bx-search-alt-2' ></i>
-  </span>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="input-group rounded my-2">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search doctors...">
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class='bx bx-search-alt-2'></i>
+                </span>
+            </div>
+        </div>
     </div>
     @forelse ($doctors as $doctor)
     <div id="find_doctor">
       <div class="card d-flex flex-row my-2 text-capitalize">
         <img src="{{ asset("images/doctor/$doctor->image") }}" height="200px" width="200px">
-        <div class="text-body px-2 w-100">
+        <div class="text-body px-2 w-100 p-0 m-0">
             <h1>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</h1>
             <h4 class="p-0 m-0">{{ $doctor->name }}</h4>
+            {{-- <p class="p-0 m-0">Contact Number: {{ $doctor->contact_number }}</p>
+            <p class="p-0 m-0">Email: {{ $doctor->email }}</p> --}}
         </div>
         <div class="d-flex align-items-center mx-2">
             <button class="btn btn-primary" data-toggle="modal" data-target="#appointmentModal{{ $doctor->id }}">Book An Appointment</button>

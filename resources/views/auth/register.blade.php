@@ -1,13 +1,13 @@
 @include('components.format.header')
 <title>Register Form</title>
-<section  style="background-image: url('images/MBP-Background.jpg');">
+<section style="background-image: url('images/register.jpg'); background-repeat: no-repeat; background-size: cover;">
     <div class="container-fluid h-custom">
       <div class="row d-flex justify-content-center align-items-center">
         {{-- <div class="col-md-9 col-lg-6 col-xl-5">
           <img src="{{ asset('images/login-image.jpg')  }}"
             class="img-fluid" alt="Sample image">
         </div> --}}
-        <div class="col-md-9 col-lg-6 col-xl-5 text-white ">
+        <div class="col-md-9 col-lg-6 col-xl-4 text-white ">
             <h1 style="font-size: 60px; text-shadow: 2px 2px 2px black;">YOUR RELIABLE</h1>
             <h1 style="font-size: 50px; text-shadow: 2px 2px 2px black;">HEALTH CARE COMPANION</h1>
         </div>

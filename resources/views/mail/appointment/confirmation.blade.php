@@ -29,8 +29,8 @@
 </style>
 
 <body>
-    <div style="background-color:#ffffff;padding:0;margin:0 auto;font-weight:200;width:100%!important">
-        <div align="center" style="margin:0 auto;max-width:768px;">
+<div style="background-color:#ffffff; padding:0; margin:0 auto; font-family: 'Your-Font-Family', sans-serif; font-weight:200; width:100% !important">
+    <div align="center" style="margin:0 auto; max-width:768px;">
             <img src="https://raw.githubusercontent.com/emmanlemon/appointmentSystem/f2c69f87b26b582d37dfe874297842fea68ea329/public/images/logoMBP.png" style="width:17rem;">
             <hr>
             <div class="content">
@@ -59,7 +59,7 @@
                 </p>
 <p>
     If you need to reschedule this appointment or if there are any changes, please do not hesitate to
-    reach out to us at [Medical Practice Phone Number] or [Medical Practice Email Address].
+    reach out to us.
     <br>
 </p>
 <p>
