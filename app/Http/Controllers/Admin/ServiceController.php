@@ -29,7 +29,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        Service::create($request->all());
+        $fileNameImage = $request->image->getClientOriginalName();
+        $filePathImage = 'images/services' . $fileNameImage;
+        $request->image->move(public_path('images/services'), $fileNameImage);
+        Service::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'prescription' => $request->prescription,
+            'image' => $request->image->getClientOriginalName()
+        ]);
         return redirect()->back()->with('success', 'Service Created Successfully!');
     }
 
@@ -54,9 +62,14 @@ class ServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $fileNameImage = $request->image->getClientOriginalName();
+        $request->image->move(public_path('images/doctor'), $fileNameImage);
         $service = Service::findorFail($id);
         $service->update([
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'prescription' => $request->input('prescription'),
+            'image' => $request->image->getClientOriginalName()
         ]);
         return redirect()->back()->with('success', 'Service Update Successfully!');
     }

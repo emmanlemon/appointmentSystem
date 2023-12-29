@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('services.update' , $service->id) }}" method="POST">
+          <form action="{{ route('services.update' , $service->id) }}" method="POST"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-outline mb-2">
@@ -17,6 +17,20 @@
                 <input type="type" class="form-control form-control-lg" value="{{ $service->name }}"
                   placeholder="Enter Name of Service" name="name" required/>
             </div>
+            <div class="form-outline mb-2">
+              <label class="form-label">Description</label>
+                <input type="type" class="form-control form-control-lg"
+                  placeholder="Enter Name of Description" name="description" value="{{ $service->description }}" required/>
+            </div>
+            <div class="form-outline mb-2">
+              <label class="form-label">Prescription</label>
+                <input type="type" class="form-control form-control-lg"
+                  placeholder="Enter Name of Prescription" name="prescription" value="{{ $service->prescription }}" required/>
+            </div>
+            <div class="form-outline mb-2">
+              <label for="formFileSm" class="form-label">Image</label>
+              <input class="form-control form-control-sm" name="image" accept="image/*" value="{{ $service->image }}" type="file" required>
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -26,7 +26,10 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Image</th>
             <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Prescription</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -35,7 +38,10 @@
           @forelse($services as $service)
           <tr>
             <th>{{ $count++ }}</th>
+            <td><img src="{{ asset("images/services/$service->image") }}" alt="" height="200px" width="200px"></td>
             <th>{{ $service->name }}</th>
+            <th>{{ $service->description }}</th>
+            <th>{{ $service->prescription }}</th>
                 <td colspan="2" class="col">
                     <div class="d-flex gap-2">
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editServiceModal{{ $service->id }}" data-id="{{ $service->id }}">Edit</button>

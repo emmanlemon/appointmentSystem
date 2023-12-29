@@ -9,13 +9,27 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('services.store') }}" method="POST">
+          <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-outline mb-2">
               <label class="form-label">Name of Service</label>
                 <input type="type" class="form-control form-control-lg"
                   placeholder="Enter Name of Service" name="name" required/>
             </div>
+            <div class="form-outline mb-2">
+              <label class="form-label">Description</label>
+                <input type="type" class="form-control form-control-lg"
+                  placeholder="Enter Name of Description" name="description" required/>
+            </div>
+            <div class="form-outline mb-2">
+              <label class="form-label">Prescription</label>
+                <input type="type" class="form-control form-control-lg"
+                  placeholder="Enter Name of Prescription" name="prescription" required/>
+            </div>
+            <div class="form-outline mb-2">
+              <label for="formFileSm" class="form-label">Image</label>
+              <input class="form-control form-control-sm" name="image" accept="image/*" type="file" required>
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
