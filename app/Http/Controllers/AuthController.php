@@ -7,14 +7,18 @@ use App\Http\Requests\RegistrationRequest;
 use Crypt;
 use Validator;
 use App\Models\User;
+use App\Models\ForgotPassword;
 use Session;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Encryption\DecryptException;
-
+use App\Notifications\ForgotPasswordNotification;
+use Illuminate\Support\Facades\Notification;
 
 class AuthController extends Controller
 {
+    public $email;
+
     public function auth(){
         return view('auth.login');
     }   
@@ -41,6 +45,46 @@ class AuthController extends Controller
     }
     public function forgot_password(){
         return view('auth.forgot_password');
+    }
+
+    public function forgotPassword(Request $request){
+        $data = User::where('email', $request->input('email'))->first();
+        if(!empty($data->id)){
+            $randomNumbers = array_map(function () {
+                return rand(1, 9);
+            }, range(1, 5));
+
+            ForgotPassword::create([
+                'email' => $data->email,
+                'passkey' => implode($randomNumbers)
+            ]);
+
+            Notification::route('mail', $data->email)
+                ->notify(new ForgotPasswordNotification(implode($randomNumbers)));
+            return view('auth.reset_password');
+        }else{
+            return redirect()->back()->with('error', 'Account Not Found! Please Try Again!');
+        }
+    }
+
+    public function reset_password(Request $request){
+        $data = ForgotPassword::where('passkey' , $request->input('passkey'))->first();
+        if(!empty($data->id)){
+            return view('auth.resetPassword', ['email' => $data->email] );
+        }
+        else{
+            return redirect('reset-pass')->with('error', 'Your OTP is Not Found! Please Try Again!');     
+        }
+    }
+    
+    public function reset_pass(Request $request){
+        return view('auth.reset_password');
+    }
+
+    public function resetPassword(Request $request){
+        $data = User::where('email', $request->input('email'))->first();
+        $data->update([ "password" => $request->input('password')]);
+        return redirect('login')->with('success', 'Your Password Successfully!');
     }
 
     public function login(Request $request){

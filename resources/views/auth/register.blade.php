@@ -46,7 +46,7 @@
 
             <div class="form-outline mb-2">
               <label class="form-label">Age</label>
-                <input type="number" name="age" class="form-control form-control-lg"
+                <input type="date" name="age" class="form-control form-control-lg"
                   placeholder="Enter Age"  value="{{ old('age') }}"/>
                 @error('age')
                     <span class="text-danger">{{ $message }}</span>
@@ -84,12 +84,21 @@
             <!-- Password input -->
             <div class="form-outline mb-2">
                 <label class="form-label" for="form3Example3">Password</label>
-                <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
+                <input type="password" id="form3Example4" name="password" value="{{ old('password') }}" class="form-control form-control-lg"
                 placeholder="Enter password"/>
                 @error('password')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="form-outline mb-2">
+              <label class="form-label" for="form3Example3">Confirm Password</label>
+              <input type="password" id="form3Example4" name="confirm_password" value="{{ old('confirm_password') }}" class="form-control form-control-lg"
+              placeholder="Enter Confirm password"/>
+              @error('confirm_password')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+          </div>
+
             <input type="hidden" name="role" value="0">
 
             <div class="text-center text-lg-start mt-4 pt-2">

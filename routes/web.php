@@ -29,6 +29,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'register_post'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/forgot-password', [AuthController::class, 'forgot_password'])->name('auth.forgotPassword');
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('auth.forgot_password');
+Route::post('/reset-password', [AuthController::class, 'reset_password'])->name('auth.reset_password');
+Route::post('/resetPassword', [AuthController::class, 'resetPassword'])->name('auth.resetPassword');
+Route::get('/reset-pass', [AuthController::class, 'reset_pass'])->name('auth.forgotPass');
 
 Route::get('/page/admin/{page?}' , [AdminController::class , 'index'])->name('admin');
 Route::resource('/admin',AdminController::class);
