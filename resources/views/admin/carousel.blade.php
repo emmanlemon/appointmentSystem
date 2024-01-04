@@ -1,5 +1,6 @@
-@include('layout')
-@extends('components.format.sidebarNavigation')
+@extends('layout.master')
+
+@section('content')
 <title>Admin Carousel</title>
 @section('sideBarNavigation')
 <section class="home-section">

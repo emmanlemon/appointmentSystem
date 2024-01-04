@@ -1,92 +1,170 @@
-@extends('layout')
-@extends('components.format.sidebarNavigation')
+@extends('layout.master')
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
+@section('content')
 <title>Admin Doctor</title>
-
-@section('sideBarNavigation')
 <section class="home-section">
-   <div class="title">
-      <span>Doctor List</span>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDoctorModal">Add Doctor +</button>
+   <div class="title"><span>
+    Doctor List 
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add Doctor +</button>
+  </span>
+    <!-- Example split danger button -->
+<div class="btn-group" class="position: fixed;">
+      <button type="button" class="btn btn-primary"><i class="fa fa-user-circle-o" aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right"> <!-- Add dropdown-menu-right class here -->
+        <a class="dropdown-item" href="#">{{ $user->email }}</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('auth.logout') }}">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Logout</span>
+        </a>
+      </div>    
+    </div>
+     
    </div>
-   <div class="container mt-4">
-      @if(Session::has('delete') || Session::has('success'))
-         <div class="alert alert-{{ Session::has('delete') ? 'danger' : 'success' }}">
-            {{ Session::get(Session::has('delete') ? 'delete' : 'success') }}
-         </div>
-      @endif
-      <div class="input-group mt-3">
-         <input type="text" id="searchInput" class="form-control" placeholder="Search doctors..." aria-label="Search doctors">
-         <button class="btn btn-outline-secondary" type="button">Search</button>
-      </div>
-      <div class="table-responsive mt-3">
-         <table class="table table-striped">
-            <thead>
-               <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Picture</th>
-                  <th scope="col">Full Name</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Services</th>
-                  <th scope="col">Action</th>
-               </tr>
-            </thead>
-            <tbody>
-               @php $count = 1; @endphp
-               @forelse($doctors as $doctor)
-               <tr>
-                  <td>{{ $count++ }}</td>
-                  <td><img src="{{ asset("images/doctor/$doctor->image") }}" alt="" height="100px" width="100px"></td>
-                  <td>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</td>
-                  <td>{{ $doctor->address }}</td>
-                  <td>{{ $doctor->contact_number }}</td>
-                  <td>{{ $doctor->email }}</td>
-                  <td>{{ $doctor->name }}</td>
-                  <td>
-                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDoctorModal{{ $doctor->id }}" data-id="{{ $doctor->id }}">Edit</button>
-                        <form action='{{ route('doctor.destroy', $doctor->id) }}' method="post">
-                           <input class="btn btn-danger" type="submit" value="Delete" />
-                           @method('delete')
-                           @csrf
-                        </form>
-                     </div>
-                  </td>
-               </tr>
-               <!-- Include the Edit Doctor modal -->
-               @include('components.molecule.doctor.editDoctor')
-               @empty
-               <tr>
-                  <td colspan="8">No Doctor found.</td>
-               </tr>
-               @endforelse
-            </tbody>
-         </table>
-      </div>
+   <div class="container">
+    @if(Session::has('error'))
+    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @elseif(Session::has('success'))
+    <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Picture</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Services</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @php $count = 1; @endphp
+          @forelse($doctors as $doctor)
+          <tr>
+            <th>{{ $count++ }}</th>
+            <td><img src="{{ asset("images/doctor/$doctor->image") }}" alt="" height="200px" width="200px"></td> 
+            <td>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</td>
+            <td>{{ $doctor->address }}</td>
+            <td>{{ $doctor->contact_number }}</td>
+            <td>{{ $doctor->email }}</td>
+            <td>{{ $doctor->services ?? ''}}</td>
+            <td colspan="2">
+                  <button class="btn btn-success">Edit</button>
+              <form action='{{ route('doctor.destroy' , $doctor->id) }}' method="post">
+                      <input class="btn btn-danger float-right" type="submit" value="Delete" />
+                      @method('delete')
+                      @csrf
+              </form>
+          </td>
+          </tr>
+          @empty
+            <tr>
+              <td colspan="7">No Doctor found.</td>
+            </tr>
+          @endforelse
+        </tbody>
+      </table>
    </div>
 </section>
 
-<!-- Add Doctor Modal -->
-<div class="modal" id="addDoctorModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Doctor</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <!-- Form for adding a new doctor -->
-                <!-- Your form fields will go here -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- You can add a button to submit the form -->
-            </div>
+
+  <!-- Add Doctor Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Doctor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-outline mb-2">
+              <label class="form-label">First Name</label>
+                <input type="type" name="first_name" class="form-control form-control-lg"
+                  placeholder="Enter Name" value="{{ old('first_name') }}"/>
+                @error('first_name')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+          </div>
+          
+          <div class="form-outline mb-2">
+            <label class="form-label">Middle Name</label>
+              <input type="type" name="middle_name" class="form-control form-control-lg"
+                placeholder="Enter Name" value="{{ old('middle_name') }}"/>
+              @error('middle_name')
+                  <span class="text-danger">{{ $message }}</span>
+              @enderror
+          </div>
+
+          <div class="form-outline mb-2">
+            <label class="form-label">Last Name</label>
+              <input type="type" name="last_name" class="form-control form-control-lg"
+                placeholder="Enter Name" value="{{ old('last_name') }}"/>
+              @error('last_name')
+                  <span class="text-danger">{{ $message }}</span>
+              @enderror
+          </div>
+
+          <div class="form-outline mb-2">
+            <label class="form-label">Contact number</label>
+              <input type="type" name="contact_number" class="form-control form-control-lg"
+                placeholder="Enter Name" value="{{ old('contact_number') }}"/>
+              @error('contact_number')
+                  <span class="text-danger">{{ $message }}</span>
+              @enderror
+          </div>
+          
+          <div class="form-outline mb-2">
+            <label class="form-label">Address</label>
+              <input type="type" name="address" class="form-control form-control-lg"
+                placeholder="Enter Name"  value="{{ old('address') }}"/>
+              @error('address')
+                  <span class="text-danger">{{ $message }}</span>
+              @enderror
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline mb-2">
+          <label class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control form-control-lg"
+              placeholder="Enter a valid email address"  value="{{ old('email') }}"/>
+            @error('email')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+          </div>
+
+          <div class="form-outline mb-2">
+            <label class="form-label">Services</label>
+              <input type="type" name="services" class="form-control form-control-lg"
+                placeholder="Services"  value="{{ old('services') }}"/>
+              @error('services')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="form-outline mb-2">
+              <label for="formFileSm" class="form-label">Image</label>
+              <input class="form-control form-control-sm" name="image" accept="image/*" type="file" required>
+              </div>
+              <input type="hidden" name="role" value="1">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+      </div>
     </div>
-</div>
-@endsection
+  </div>
+  @endsection

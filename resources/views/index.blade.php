@@ -1,5 +1,6 @@
-@include('layout')
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>MBP Dashboard</title>
 {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -337,4 +338,4 @@
         </div>
     </div>
 </div>
-@include('components.format.footer')
+@endsection

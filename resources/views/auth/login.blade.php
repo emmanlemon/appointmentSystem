@@ -1,8 +1,10 @@
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>Login Form</title>
 <section style="background-image: url('images/MBP-Background.jpg');">
     <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="row d-flex justify-content-center align-items-center min-vh-100">
         {{-- <div class="col-md-9 col-lg-6 col-xl-5">
           <img src="{{ asset('images/login-image.jpg')  }}"
             class="img-fluid" alt="Sample image">
@@ -33,12 +35,14 @@
             <!-- Password input -->
             <div class="form-outline mb-2">
                 <label class="form-label" for="form3Example3">Password</label>
-                <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
+                <input type="password" id="password" name="password" class="form-control form-control-lg"
                 placeholder="Enter password" />
                 @error('password')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
+                <input type="checkbox" onclick="myFunction()">Show Password
             </div>
+
             <p><a href="{{ route('auth.forgotPassword') }}">Forgot your password?</a>                </p>
 
             <div class="text-center text-lg-start mt-4 pt-2">
@@ -53,4 +57,14 @@
       </div>
     </div>
   </section>
-  @include('components.format.footer')
+  <script>
+    function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+  </script>
+@endsection

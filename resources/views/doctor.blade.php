@@ -1,9 +1,13 @@
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>Book an Appoinment</title>
 <div class="container min-vh-100 mt-2">
 
-    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/find.png') }}); background-size: 100% 200px; background-repeat: no-repeat;">
-    </div>
+  <div class="w-100 p-4" style="min-height: 25vh; background-image:url({{ asset('images/find.png') }}); background-size: 100%; background-repeat: no-repeat;">
+    <!-- Content goes here -->
+</div>
+
     @if(Session::has('error'))
     <div class="alert alert-danger mt-2">{{ Session::get('error') }}</div>
     @endif
@@ -151,4 +155,4 @@
     @endforelse
     <div class="d-flex justify-content-end">{{ $doctors->links() }}</div>
 </div>
-@include('components.format.footer')
+@endsection

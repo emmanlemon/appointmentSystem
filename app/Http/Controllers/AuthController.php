@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegistrationRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use Crypt;
 use Validator;
 use App\Models\User;
@@ -61,6 +62,7 @@ class AuthController extends Controller
 
             Notification::route('mail', $data->email)
                 ->notify(new ForgotPasswordNotification(implode($randomNumbers)));
+                // return redirect('reset-password');
             return view('auth.reset_password');
         }else{
             return redirect()->back()->with('error', 'Account Not Found! Please Try Again!');
@@ -82,9 +84,27 @@ class AuthController extends Controller
     }
 
     public function resetPassword(Request $request){
-        $data = User::where('email', $request->input('email'))->first();
-        $data->update([ "password" => $request->input('password')]);
-        return redirect('login')->with('success', 'Your Password Successfully!');
+        $rules = [
+            'password' => 'required',
+            'confirm_password' => 'required|same:password'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return view('auth.resetPassword' , ['email' => $request->input('email')])
+                        ->withErrors($validator);
+        }
+
+        $user = User::where('email', $request->input('email'))->first();
+        
+        if ($user) {
+            $user->update([
+                'password' => Hash::make($request->input('password'))
+            ]);
+            return redirect('login')->with('success', 'Your Password Successfully Reset!');
+        } else {
+            return redirect()->back()->with('error', 'User not found for the provided email.');
+        }
     }
 
     public function login(Request $request){

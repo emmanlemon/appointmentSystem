@@ -280,6 +280,7 @@ color: white;
 
 
 .title{
+  width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: 4px outset #00a146;

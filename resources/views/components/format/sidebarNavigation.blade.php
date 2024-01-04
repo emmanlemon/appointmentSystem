@@ -1,4 +1,3 @@
-@include('layout')
 <link rel="stylesheet" style="text/css" href="{{ url('css/sideBarNavigation.css') }}">
 <div class="sidebar">
     <img src="{{ asset('images/logoMBP.png') }}"
@@ -80,13 +79,13 @@
         </a>
         <span class="tooltip">Report</span>
       </li>
-      <li>
+      {{-- <li>
         <a href="{{ route('auth.logout') }}">
             <i class='bx bx-log-out' ></i>
             <span class="links_name">Logout</span>
         </a>
         <span class="tooltip">Logout</span>
-      </li>
+      </li> --}}
     </ul>
   </div>
   <script>

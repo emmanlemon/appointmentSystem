@@ -42,7 +42,7 @@ Route::resource('/services',ServiceController::class);
 Route::resource('/carousel',CarouselController::class);
 Route::get('/page/doctor/{page?}' , [DoctorController::class , 'index'])->name('doctor');
 Route::resource('/doctor',DoctorController::class);
-Route::get('/lient/{page?}' , [ClientController::class , 'index'])->name('client');
+Route::get('/page/client/{page?}' , [ClientController::class , 'index'])->name('client');
 Route::resource('/appointment' , AppointmentController::class);
 
 Route::fallback(function() {

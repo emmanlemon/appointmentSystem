@@ -1,8 +1,10 @@
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>Reset Password</title>
 <section style="background-image: url('images/MBP-Background.jpg');">
     <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="row d-flex justify-content-center align-items-center min-vh-100">
         <div class="col-md-9 col-lg-6 col-xl-5 text-white ">
             <h1 style="font-size: 60px; text-shadow: 2px 2px 2px black;">YOUR RELIABLE</h1>
             <h1 style="font-size: 50px; text-shadow: 2px 2px 2px black;">HEALTH CARE COMPANION</h1>
@@ -35,4 +37,4 @@
       </div>
     </div>
   </section>
-  @include('components.format.footer')
+  @endsection

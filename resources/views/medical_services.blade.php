@@ -1,7 +1,9 @@
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>Medical Services</title>
 <div class="container min-vh-100 mt-2">
-    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/medical.png') }}); background-size: 100% 200px; background-repeat: no-repeat;">
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/medical.png') }}); background-size: 100%; min-height: 25vh; background-repeat: no-repeat;">
     </div>
    
 
@@ -154,4 +156,4 @@
           </table>
     </div>
 </div>
-@include('components.format.footer')
+@endsection

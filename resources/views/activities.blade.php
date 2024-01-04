@@ -1,7 +1,9 @@
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>Activities Dashboard</title>
-<div class="container min-vh-100 mt-2">
-    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/events.png') }}); background-size: 100% 220px; background-repeat: no-repeat;">
+<div class="container min-vh-100 mt-2 mb-4">
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/events.png') }}); background-size: 100%; min-height: 25vh; background-repeat: no-repeat;">
     </div>
 
     <div class="mt-4 text-center">
@@ -64,5 +66,4 @@
         </div>
     </div>
 </div>
-
-@include('components.format.footer')
+@endsection

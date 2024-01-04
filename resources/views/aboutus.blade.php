@@ -1,7 +1,9 @@
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>About Us Dashboard</title>
 <div class="container min-vh-100 mt-2 mb-2">
-    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/history.png') }}); background-size: 100% 210px; background-repeat: no-repeat;">
+    <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/history.png') }}); background-size: 100%; min-height: 50vh; background-repeat: no-repeat;">
     </div>
     <div class="row my-4">
         <div class="col-md-6">
@@ -19,4 +21,4 @@
         <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500px" id="gmap_canvas" src="https://maps.google.com/maps?q=Blessed Trinity General Hospital&t=k&z=18&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2yu.co">2yu</a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}</style><a href="https://embedgooglemap.2yu.co/">html embed google map</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div></div>
     </div>
 </div>
-@include('components.format.footer')
+@endsection

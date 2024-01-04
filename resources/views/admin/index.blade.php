@@ -1,10 +1,28 @@
-@include('layout')
-@extends('components.format.sidebarNavigation')
+@extends('layout.master')
+
+@section('content')
 <title>Admin Dashboard</title>
-@section('sideBarNavigation')
 <section class="home-section">
-    <div class="title"><span>
-        Admin Dashboard</span>
+    <div class="title">
+        <span>
+        Admin Dashboard
+    </span>
+   <!-- Example split danger button -->
+   <div class="btn-group">
+    <button type="button" class="btn btn-primary"><i class="fa fa-user-circle-o" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right"> <!-- Add dropdown-menu-right class here -->
+      <a class="dropdown-item" href="#">{{ $user->email }}</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route('auth.logout') }}">
+        <i class='bx bx-log-out'></i>
+        <span class="links_name">Logout</span>
+      </a>
+    </div>
+</div>
+
     </div>
 <div class="p-3 d-flex gap-4">
     <div class="card" style="width: 18rem;">
@@ -33,7 +51,7 @@
         <div class="card-body">
             <h5 class="card-title">Announcements</h5>
             <p class="card-text">{{ $announcements->count() }}</p>
-            <a href="{{ route('admin' , 'announcement') }}" class="btn btn-primary">See Announcement List</a>
+            <a href="{{ route('admin' , 'announcement') }}" class="btn btn-primary">See Announcement</a>
     </div>
 </div>
 

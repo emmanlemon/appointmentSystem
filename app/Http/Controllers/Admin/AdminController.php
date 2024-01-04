@@ -10,6 +10,7 @@ use App\Models\Announcement;
 use App\Models\Carousel;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -37,6 +38,7 @@ class AdminController extends Controller
         $announcements = Announcement::all();
         $carousels = Carousel::all();
         $services = Service::all();
+        $user = User::where('id' ,Session::get('loginId'))->first();
         $appointmentLists = DB::table('appointments')
         ->select($column)
         ->leftJoin('users' , 'users.id' , 'appointments.doctor_id')
@@ -47,9 +49,9 @@ class AdminController extends Controller
         ->where('appointments.status' , 1)
         ->get();
         if($page != null){
-            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services'));
+            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user' ));
         }
-        return view('admin.index' , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services'));
+        return view('admin.index' , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user'));
     }
 
     /**

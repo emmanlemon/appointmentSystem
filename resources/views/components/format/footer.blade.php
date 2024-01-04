@@ -1,4 +1,3 @@
-@include('extension.app')
 <!-- Footer -->
 <footer class="text-center text-white" style="background-color:#329dc7;">
     <!-- Grid container -->
