@@ -10,6 +10,7 @@ class Appointment extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'transaction_number',
         'full_name',
         'gender',
         'age',

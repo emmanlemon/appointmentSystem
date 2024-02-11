@@ -7,10 +7,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\CarouselController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\AppointmentController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +37,11 @@ Route::get('/reset-pass', [AuthController::class, 'reset_pass'])->name('auth.for
 
 Route::get('/page/admin/{page?}' , [AdminController::class , 'index'])->name('admin');
 Route::resource('/admin',AdminController::class);
-Route::resource('/announcement',AnnouncementController::class);
-Route::resource('/services',ServiceController::class);
+Route::resource('/announcement', AnnouncementController::class);
+Route::resource('/services', ServiceController::class);
+Route::resource('/events', EventController::class);
+Route::post('/services-post', [ServiceController::class , 'store_serviceChild'])->name('service.post');
+Route::delete('/services-delete/{serviceChild?}',[ServiceController::class , 'delete_serviceChild'])->name('service.delete');
 Route::resource('/carousel',CarouselController::class);
 Route::get('/page/doctor/{page?}' , [DoctorController::class , 'index'])->name('doctor');
 Route::resource('/doctor',DoctorController::class);

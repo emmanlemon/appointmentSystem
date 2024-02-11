@@ -14,4 +14,8 @@ class Service extends Model
     // public function users(){
     //     return $this->belongsToMany(User::class , 'users','id', 'user_id');
     //  }
+    public function children()
+{
+    return $this->hasMany(ServiceChild::class, 'service_id');
+}
 }

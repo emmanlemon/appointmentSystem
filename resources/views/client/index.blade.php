@@ -1,5 +1,6 @@
-@include('layout')
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>MBP Dashboard</title>
 {{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -229,92 +230,19 @@
             <p>MBP Medical Services</p>
             <span></span>
         </div>
+        @forelse($services as $service)
         <div class="col-md-4">
             <div class="card mb-4 box-shadow">
                 <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                    src="{{ asset('images/services/cholec.jpeg') }}" data-holder-rendered="true">
+                src="{{ asset("images/services/$service->image") }}" data-holder-rendered="true">
                 <div class="card-body">
-                    <h4>CHOLECYSTECTOMY</h4>
-                    <p class="card-text">The hospital specializes in performing cholecystectomies, a surgical procedure
-                        for gallbladder removal. Our skilled medical team ensures safe and effective surgeries,
-                        prioritizing patient well-being and recovery.</p>
-                    {{-- <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div> --}}
+                    <h4>{{ $service->name }}</h4>
+                    <p class="card-text">{{ $service->description }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-                <img class="card-img-top" alt="Thumbnail [100%x225]"
-                    style="height: 225px; width: 100%; display: block;"
-                    src="{{ asset('images/services/xray.jpeg') }}" data-holder-rendered="true">
-                <div class="card-body">
-                    <h4>X-RAY</h4>
-                    <p class="card-text">At this hospital, cutting-edge X-ray facilities are readily available,
-                        delivering accurate and swift diagnostic imaging crucial for comprehensive patient care and
-                        efficient medical treatment.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-                <img class="card-img-top" alt="Thumbnail [100%x225]"
-                    style="height: 225px; width: 100%; display: block;"
-                    src="{{ asset('images/services/ultra.jpeg') }}" data-holder-rendered="true">
-                <div class="card-body">
-                    <h4>ULTRASOUND</h4>
-                    <p class="card-text">This hospital is equipped with advanced ultrasound technology, enabling
-                        detailed and non-invasive imaging for precise diagnosis and effective medical care, ensuring
-                        patients receive the highest quality healthcare.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-                <img class="card-img-top" alt="Thumbnail [100%x225]"
-                    style="height: 225px; width: 100%; display: block;"
-                    src="{{ asset('images/services/laboratory.jpeg') }}" data-holder-rendered="true">
-                <div class="card-body">
-                    <h4>LABORATORY TEST</h4>
-                    <p class="card-text">This hospital boasts a comprehensive laboratory, offering a wide range of
-                        diagnostic tests. Our skilled technicians provide accurate results, aiding in prompt and
-                        effective medical treatment for patients.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-                <img class="card-img-top" alt="Thumbnail [100%x225]"
-                    style="height: 225px; width: 100%; display: block;"
-                    src="{{ asset('images/services/ortho.jpeg') }}" data-holder-rendered="true">
-                <div class="card-body">
-                    <h4>ORTHOPEDIC SURGERY</h4>
-                    <p class="card-text">This hospital specializes in orthopedic surgery, offering cutting-edge
-                        procedures and expert care for musculoskeletal conditions. Our dedicated team ensures patients
-                        regain mobility and optimal health.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-                <img class="card-img-top" alt="Thumbnail [100%x225]"
-                    style="height: 225px; width: 100%; display: block;"
-                    src="{{ asset('images/services/family-planning.jpeg') }}" data-holder-rendered="true">
-                <div class="card-body">
-                    <h4>FAMILY PLANNING</h4>
-                    <p class="card-text">
-                        Our hospital offers comprehensive family planning services, including counseling, contraception
-                        options, and reproductive health education. We prioritize empowering individuals to make
-                        informed choices about their family's .</p>
-                </div>
-            </div>
-        </div>
+        @empty
+        @endforelse
     </div>
 </div>
 <div class="location">
@@ -342,4 +270,4 @@
         </div>
     </div>
 </div>
-@include('components.format.footer')
+@endsection

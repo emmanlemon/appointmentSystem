@@ -1,4 +1,6 @@
-@include('components.format.header')
+@extends('layout.master')
+
+@section('content')
 <title>Book an Appointment</title>
 <div class="container min-vh-100 mt-2">
 
@@ -151,4 +153,4 @@
     @endforelse
     <div class="d-flex justify-content-end">{{ $doctors->links() }}</div>
 </div>
-@include('components.format.footer')
+@endsection

@@ -2,6 +2,7 @@
 
 @section('content')
 <title>Admin Doctor</title>
+@section('sideBarNavigation')
 <section class="home-section">
    <div class="title"><span>
     Doctor List 
@@ -25,6 +26,12 @@
      
    </div>
    <div class="container">
+    <div class="input-group rounded my-2">
+      <input type="text" id="searchInput" class="form-control p-3" placeholder="Search Doctor...">
+      <span class="input-group-text border-0" id="search-addon">
+          <i class='bx bx-search-alt-2' ></i>
+  </span>
+    </div>
     @if(Session::has('error'))
     <div class="alert alert-danger">{{ Session::get('error') }}</div>
     @elseif(Session::has('success'))
@@ -56,7 +63,7 @@
             <td>{{ $doctor->email }}</td>
             <td>{{ $doctor->services ?? ''}}</td>
             <td colspan="2">
-                  <button class="btn btn-success">Edit</button>
+                  {{-- <button class="btn btn-success">Edit</button> --}}
               <form action='{{ route('doctor.destroy' , $doctor->id) }}' method="post">
                       <input class="btn btn-danger float-right" type="submit" value="Delete" />
                       @method('delete')

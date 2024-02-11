@@ -1,9 +1,10 @@
 @extends('layout.master')
 
 @section('content')
+<title>Admin Announcement</title>
+@section('sideBarNavigation')
 @include('components.molecule.admin.addCarousel')
 @include('components.molecule.admin.addAnnouncement')
-<title>Admin Announcement</title>
 <section class="home-section">
    <div class="title"><span>Content Management</span>
       <!-- Example split danger button -->

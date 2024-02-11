@@ -28,19 +28,22 @@
                 <a class="nav-link" href="{{ route('guest', 'aboutus') }}">About Us</a>
             </li>
             @if (!empty(Session::has('loginId')))
-                <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('client', ['profile', 'clientHeader' => "1"]) }}">Dashboard</a>
+            </li>
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('client', 'appointment_list') }}">Appointment List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('auth.logout') }}">Logout</a>
-                </li>
-            @else
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{ route('auth.login') }}">Login</a>
                 </li> --}}
+            @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('auth.register') }}">Sign Up</a>
+                    <a class="nav-link" href="{{ route('auth.login') }}">Login</a>
                 </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{ route('auth.register') }}">Sign Up</a>
+                </li> --}}
             @endif
         </ul>
     </div>

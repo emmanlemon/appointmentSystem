@@ -34,11 +34,18 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        $data = DB::table('appointments')->latest()->first();
+        $id = $data ? intval($data->id) + 1 : 1;
+        $date = $request->input('date');
+        $year = substr($request->input('date'), 2 , 2);
+        $month = substr($request->input('date'), 5 , 2 ) ;
+
         $user = Session::get('loginId');
         if (empty($user)) {
             return redirect()->back()->with('error', 'You need to login First.');
         }
         Appointment::create([
+            'transaction_number' => $year."-".$month."-000".$id,
             'full_name' => $request->full_name,
             'gender' => $request->gender,
             'marital_status' => $request->marital_status,

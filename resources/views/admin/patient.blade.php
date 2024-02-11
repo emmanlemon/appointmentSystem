@@ -2,6 +2,7 @@
 
 @section('content')
 <title>Admin Patient List</title>
+@section('sideBarNavigation')
 <section class="home-section">
    <div class="title"><span>Patient List</span>
   

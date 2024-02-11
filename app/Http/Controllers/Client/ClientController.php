@@ -15,10 +15,9 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($page = null)
+    public function index(Request $request , $page = null)
     {
         $column = [
-            'users.first_name as doctor_first_name',
             'users.first_name as doctor_first_name',
             'users.middle_name as doctor_middle_name',
             'users.last_name as doctor_last_name',
@@ -32,6 +31,15 @@ class ClientController extends Controller
         ->get()->groupBy(function($data) {
             return $data->doctor_first_name .' '. $data->doctor_middle_name.' '.$data->doctor_last_name ;
         });
+        $transactions = DB::table('appointments')
+        ->select($column)
+        ->leftJoin('users', 'users.id', '=', 'appointments.doctor_id')
+        ->leftJoin('services', 'services.id', '=', 'appointments.doctor_id')
+        ->where('appointments.user_id', '=', $user)
+        ->get();
+        $clientHeader = $request->query('clientHeader');
+        session()->put('clientHeader', $clientHeader);
+        $user = User::where('id' ,Session::get('loginId'))->first();
         $carousels = Carousel::all();
         $announcements = Announcement::latest()->first();
         $doctors = DB::table('users')->leftJoin('services as s', 's.id', '=', 'users.service_id')
@@ -40,9 +48,9 @@ class ClientController extends Controller
         ->paginate(5);
 
         if($page != null){
-            return view('client.'.$page , compact('doctors' ,'appointments', 'carousels','announcements'));
+            return view('client.'.$page , compact('doctors' ,'appointments', 'carousels','announcements','user','transactions'));
         }
-        return view('client.index' , compact('carousels','announcements'));
+        return view('client.index' , compact('carousels','announcements','user' , 'transactions'));
     }
 
     /**

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('doctor_id')
                     ->references('id')->on('users')
                     ->onDelete('cascade');
+            $table->string('transaction_number');
             $table->string('full_name');
             $table->string('age');
             $table->string('date_of_birth');

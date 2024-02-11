@@ -9,6 +9,7 @@ use App\Models\Appointment;
 use App\Models\Announcement;
 use App\Models\Carousel;
 use App\Models\Service;
+use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -35,9 +36,14 @@ class AdminController extends Controller
         ->where('users.role', '=', '1')
         ->get();
         $clients = Appointment::all();
+        $events = Event::all();
         $announcements = Announcement::all();
         $carousels = Carousel::all();
         $services = Service::all();
+        $servicesWithChildren = $services->map(function ($service) {
+        $service->children = $service->children()->get();
+        return $service;
+        });
         $user = User::where('id' ,Session::get('loginId'))->first();
         $appointmentLists = DB::table('appointments')
         ->select($column)
@@ -49,9 +55,9 @@ class AdminController extends Controller
         ->where('appointments.status' , 1)
         ->get();
         if($page != null){
-            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user' ));
+            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user' , 'servicesWithChildren', 'events' ));
         }
-        return view('admin.index' , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user'));
+        return view('admin.index' , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user' , 'events'));
     }
 
     /**

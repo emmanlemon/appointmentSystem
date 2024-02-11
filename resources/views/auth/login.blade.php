@@ -40,8 +40,8 @@
                 @error('password')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
-                <input type="checkbox" onclick="myFunction()">Show Password
             </div>
+            <input type="checkbox" onclick="myFunction()">Show Password
 
             <p><a href="{{ route('auth.forgotPassword') }}">Forgot your password?</a>                </p>
 

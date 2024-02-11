@@ -2,6 +2,7 @@
 
 @section('content')
 <title>Admin Dashboard</title>
+@section('sideBarNavigation')
 <section class="home-section">
     <div class="title">
         <span>
@@ -72,6 +73,6 @@
 </div>
 
 </div>
-    </div>
+
 </section>
 @endsection

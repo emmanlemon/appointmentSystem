@@ -139,6 +139,8 @@ class AuthController extends Controller
     public function logout()
     {
         if(Session::has('loginId')) {
+            session()->put('clientHeader', null);
+            Session::pull('role');
             Session::pull('loginId');
             return redirect('/login')->with('success', 'Logout Successfully!');
         }

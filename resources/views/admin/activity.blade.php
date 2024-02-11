@@ -1,10 +1,9 @@
 @extends('layout.master')
 
 @section('content')
-<title>Admin Report List</title>
-@section('sideBarNavigation')
+<title>Admin Event List</title>
 <section class="home-section">
-   <div class="title"><span>Report List</span>
+   <div class="title"><span>Event List</span>
       <!-- Example split danger button -->
 <div class="btn-group" class="position: fixed;">
   <button type="button" class="btn btn-primary"><i class="fa fa-user-circle-o" aria-hidden="true"></i></button>

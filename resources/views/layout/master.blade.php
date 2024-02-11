@@ -15,17 +15,19 @@
     @vite(['resources/js/app.js'])
 </head>
 <body>
-    @if(Session::get('role') != 1 && Session::get('role') != null) 
+    @if(Session::get('role') == 1 || Session::get('role') == 2 && Session::has('loginId')) 
         @include('components.format.sidebarNavigation')
-    @else
+    @elseif(Session::get('role') == 0 && !empty(Session::get('clientHeader')))
+        @include('components.format.sidebarNavigationClient')
+    @elseif(Session::get('role') == 0 && empty(Session::get('clientHeader')))
         @include('components.format.header')
-    @endif
+     @endif
 <main>
     @yield('content')
 </main>
-    @if(Session::get('role') != 1 && Session::get('role') != null) 
-    @else
-     @include('components.format.footer')
-    @endif
+@if(Session::get('role') == 0 && !empty(Session::get('clientHeader')))
+@elseif(Session::get('role') == 0 && empty(Session::get('clientHeader')))
+@include('components.format.footer')
+@endif
 </body>
 </html>

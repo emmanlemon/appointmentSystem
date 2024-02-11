@@ -225,7 +225,20 @@
             <p>MBP Medical Services</p>
             <span></span>
         </div>
+        @forelse($services as $service)
         <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                src="{{ asset("images/services/$service->image") }}" data-holder-rendered="true">
+                <div class="card-body">
+                    <h4>{{ $service->name }}</h4>
+                    <p class="card-text">{{ $service->description }}</p>
+                </div>
+            </div>
+        </div>
+        @empty
+        @endforelse
+        {{-- <div class="col-md-4">
             <div class="card mb-4 box-shadow">
                 <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
                     src="{{ asset('images/services/cholec.jpeg') }}" data-holder-rendered="true">
@@ -234,13 +247,6 @@
                     <p class="card-text">The hospital specializes in performing cholecystectomies, a surgical procedure
                         for gallbladder removal. Our skilled medical team ensures safe and effective surgeries,
                         prioritizing patient well-being and recovery.</p>
-                    {{-- <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div> --}}
                 </div>
             </div>
         </div>
@@ -310,7 +316,7 @@
                         informed choices about their family's .</p>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 <div class="location">

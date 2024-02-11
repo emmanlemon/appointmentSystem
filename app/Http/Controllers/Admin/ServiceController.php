@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\ServiceChild;
 
 class ServiceController extends Controller
 {
@@ -81,5 +82,19 @@ class ServiceController extends Controller
     {
         $service->delete();
         return redirect()->back()->with('delete', 'Service Deleted Successfully');
+    }
+
+    public function store_serviceChild(Request $request){
+        if($request->service_id == "null") {
+            return redirect()->back()->with('error', 'Service Child Created Not Successfully!');
+        }else{
+            ServiceChild::create($request->all());
+        return redirect()->back()->with('success', 'Service Child Created Successfully!');
+        }
+    }
+    
+    public function delete_serviceChild(ServiceChild $serviceChild){
+        $serviceChild->delete();
+        return redirect()->back()->with('delete', 'Deleted Service Child Successfully');
     }
 }
