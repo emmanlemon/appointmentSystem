@@ -32,7 +32,7 @@ class AdminController extends Controller
             'appointments.status as status',
         ];
         $doctors = DB::table('users')->leftJoin('services as s', 's.id', '=', 'users.service_id')
-        ->select('*' , 'users.id as id')
+        ->select('*' , 'users.id as id' , 'users.image as image')
         ->where('users.role', '=', '1')
         ->get();
         $clients = Appointment::all();
