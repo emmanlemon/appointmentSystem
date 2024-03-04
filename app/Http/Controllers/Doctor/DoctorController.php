@@ -20,11 +20,15 @@ class DoctorController extends Controller
         $user = Session::get('loginId');
         $doctors = User::where('role', '=', '1')->get();
         $appointments = Appointment::where('doctor_id', '=', $user)->paginate(10);
+        $pendingCount = Appointment::where('doctor_id', $user)->where('status', 'pending')->count();
+        $declinedCount = Appointment::where('doctor_id', $user)->where('status', 'declined')->count();
+        $approvedCount = Appointment::where('doctor_id', $user)->where('status', 'approved')->count();
         $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('appointments.status', '=', 1)->paginate(5);
+
         if ($page != null) {
-            return view('doctor.' . $page, compact('appointments', 'appointmentreports'));
+            return view('doctor.' . $page, compact('appointments', 'appointmentreports' , 'pendingCount', 'declinedCount' , 'approvedCount'));
         }
-        return view('doctor.index', compact('appointments', 'appointmentreports'));
+        return view('doctor.index', compact('appointments', 'appointmentreports' , 'pendingCount', 'declinedCount' , 'approvedCount'));
     }
     /**
      * Show the form for creating a new resource.
@@ -47,7 +51,6 @@ class DoctorController extends Controller
         $fileNameImage = $request->image->getClientOriginalName();
         $filePathImage = 'images/doctor' . $fileNameImage;
         $request->image->move(public_path('images/doctor'), $fileNameImage);
-
         User::create([
             'first_name' => $request->input('first_name'),
             'middle_name' => $request->input('middle_name'),
@@ -55,12 +58,13 @@ class DoctorController extends Controller
             'contact_number' => $request->input('contact_number'),
             'address' => $request->input('address'),
             'email' => $request->input('email'),
-            'service_id' => $request->input('service_id'),
+            'service_id' => $request->input('services'),
+            'achievements' => $request->input('achievements'),
             'password' => $encrypted,
             'role' => $request->input('role'),
             'image' => $request->image->getClientOriginalName()
         ]);
-        return redirect()->back()->with('success', 'Created Successfully!');
+        return redirect()->back()->with('success', 'Doctor Created Successfully!');
     }
 
     /**
@@ -105,6 +109,6 @@ class DoctorController extends Controller
     {
         $user = User::findorFail($id);
         $user->delete();
-        return redirect()->back()->with('delete', 'Deleted Successfully');
+        return redirect()->back()->with('delete', 'Doctor Deleted Successfully');
     }
 }

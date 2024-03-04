@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Appointment;
 use App\Models\Announcement;
+use App\Models\Service;
 use App\Models\Carousel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -46,11 +47,16 @@ class ClientController extends Controller
         ->select('*' , 'users.id as id')
         ->where('users.role', '=', '1')
         ->paginate(5);
+        $services = Service::all();
+        $servicesWithChildren = $services->map(function ($service) {
+        $service->children = $service->children()->get();
+        return $service;
+        });
 
         if($page != null){
-            return view('client.'.$page , compact('doctors' ,'appointments', 'carousels','announcements','user','transactions'));
+            return view('client.'.$page , compact('doctors' ,'appointments', 'carousels','announcements','user','transactions','services' , 'servicesWithChildren'));
         }
-        return view('client.index' , compact('carousels','announcements','user' , 'transactions'));
+        return view('client.index' , compact('carousels','announcements','user' , 'transactions','services' , 'servicesWithChildren'));
     }
 
     /**

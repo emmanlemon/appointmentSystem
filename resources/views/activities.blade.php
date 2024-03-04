@@ -64,6 +64,7 @@
         </div>
     </div>
     @empty
+        <p class="border border-info text-center text-uppercase font-weight-bold fs-4 text-white shadow p-2 rounded mt-4" style="background-color:#329dc7; width:100%!important;"> No Events Created.</p>
     @endforelse
     
 </div>

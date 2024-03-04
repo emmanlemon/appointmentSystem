@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\AppointmentController;
+use App\Http\Controllers\PrintController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::post('/reset-password', [AuthController::class, 'reset_password'])->name(
 Route::post('/resetPassword', [AuthController::class, 'resetPassword'])->name('auth.resetPassword');
 Route::get('/reset-pass', [AuthController::class, 'reset_pass'])->name('auth.forgotPass');
 
+Route::get('/print/{page?}/{id?}' , [PrintController::class , 'index'])->name('print');
 Route::get('/page/admin/{page?}' , [AdminController::class , 'index'])->name('admin');
 Route::resource('/admin',AdminController::class);
 Route::resource('/announcement', AnnouncementController::class);

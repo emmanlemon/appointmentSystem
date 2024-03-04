@@ -53,18 +53,32 @@
               <td>{{ date('F j, Y', strtotime($appointment->date)) }} {{ date('g:i a', strtotime($appointment->time)) }}</td>
               <td>{{ $appointment->email }}</td>
               <td>
+                {{ $appointment->status }}
+                {{-- {{ $appointment->status != '0' ? 'APPROVED' : 'PENDING'}}
                   <form action="{{ route('appointment.update' , $appointment->id) }}" method="post">
                       @csrf
                       @method('PUT')
                       <select class="form-select" name="status" {{ $appointment->status != '0' ? 'disabled' : ''}}>
                           <option selected>{{ $appointment->status != '0' ? 'APPROVED' : 'PENDING'}}</option>
                           <option value="{{  $appointment->status == '0' ? 'APPROVED' : 'PENDING'}}">{{  $appointment->status == '0' ? 'APPROVED' : 'PENDING'}}</option>
-                      </select>
+                      </select> --}}
               </td>
-              <td>
-                  <button class="btn btn-success">Edit</button>
-              </form>
-                  <button class="btn btn-danger">Delete</button></td>
+              <td class="d-flex gap-2 align-items-center">
+                <form action="{{ route('appointment.update' , $appointment->id) }}" method="post">
+                  @csrf
+                  @method('PUT')
+                  <button name="status" class="btn btn-success" value="Approved">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+Approved</button>
+                </form>
+              <form action="{{ route('appointment.update' , $appointment->id) }}" method="post">
+                @csrf
+                @method('PUT')
+                  <button name="status" class="btn btn-danger" value="Declined">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+Declined</button>
+                </form>
+               </td>
             </tr>
             @empty
               <tr>

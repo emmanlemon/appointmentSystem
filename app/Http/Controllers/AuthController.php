@@ -9,6 +9,7 @@ use Crypt;
 use Validator;
 use App\Models\User;
 use App\Models\ForgotPassword;
+use Carbon\Carbon;
 use Session;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -30,11 +31,15 @@ class AuthController extends Controller
 
     public function register_post(RegistrationRequest $request){
         $encrypted = Hash::make($request->input('password'));
+
+        $birthdate = Carbon::createFromFormat('Y-m-d', $request->input('age'));
+        $age = $birthdate->diffInYears(Carbon::now());
         User::create([
             'first_name' => $request->input('first_name'),
             'middle_name' => $request->input('middle_name'),
             'last_name' => $request->input('last_name'),
-            'age' => $request->input('age'),
+            'age' => $age,
+            'birth_date' => $request->input('age'),
             'gender' => $request->input('gender'),
             'address' => $request->input('address'),
             'contact_number' => $request->input('contact_number'),

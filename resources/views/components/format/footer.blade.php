@@ -18,8 +18,8 @@
                     class='bx bxl-gmail'></i></a>
 
             <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                    class='bx bxl-twitter'></i></a>
+            {{-- <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                    class='bx bxl-twitter'></i></a> --}}
 
             <!-- Linkedin -->
             <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i

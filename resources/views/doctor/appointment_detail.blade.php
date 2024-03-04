@@ -57,9 +57,11 @@
               <td>{{ date('F j, Y', strtotime($appointment->date)) }} {{ date('g:i a', strtotime($appointment->time)) }}</td>
               <td>{{ $appointment->concern }}</td>
               <td>
-                <button class="btn btn-warning" data-toggle="modal" >
+                <a href="{{ route('print', ['page' => 'print_appointment', 'id' => $appointment->id]) }}" target="blank">
+                  <button class="btn btn-warning" data-toggle="modal" >
                   <i class="fa fa-print" aria-hidden="true"></i>
               </button>
+            </a>
               </td>
             </tr>
             @empty

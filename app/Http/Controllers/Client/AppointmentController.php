@@ -98,7 +98,7 @@ class AppointmentController extends Controller
                 ->leftJoin('users', 'users.id', 'appointments.doctor_id')
                 ->where('appointments.id' , $appointment->id)
                 ->first();
-            $appointment->status = $request->input('status') === 'PENDING' ? '0' : '1';
+            $appointment->status = $request->input('status');
             $appointment->save();
 
             Notification::route('mail', $data->email)

@@ -47,7 +47,7 @@
             </div>
 
             <div class="form-outline mb-2">
-              <label class="form-label">Age</label>
+              <label class="form-label">Birth Date</label>
                 <input type="date" name="age" class="form-control form-control-lg"
                   placeholder="Enter Age"  value="{{ old('age') }}"/>
                 @error('age')

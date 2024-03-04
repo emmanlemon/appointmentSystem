@@ -6,9 +6,6 @@
 
     <div class="h-25 w-100 p-4" style="background-image:url({{ asset('images/find.png') }}); background-size: 100% 200px; background-repeat: no-repeat;">
     </div>
-    @if(Session::has('error'))
-    <div class="alert alert-danger mt-2">{{ Session::get('error') }}</div>
-    @endif
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="input-group rounded my-2">
@@ -17,6 +14,11 @@
                     <i class='bx bx-search-alt-2'></i>
                 </span>
             </div>
+            @if(Session::has('error'))
+            <div class="alert alert-danger mt-2">{{ Session::get('error') }}</div>
+            @elseif(Session::has('msg'))
+            <div class="alert alert-success mt-2">{{ Session::get('msg') }}</div>
+            @endif
         </div>
     </div>
     @forelse ($doctors as $doctor)
@@ -25,7 +27,9 @@
         <img src="{{ asset("images/doctor/$doctor->image") }}" height="200px" width="200px">
         <div class="text-body px-2 w-100 p-0 m-0">
             <h1>{{ $doctor->first_name }} {{ $doctor->middle_name }} {{ $doctor->last_name }}</h1>
-            <h4 class="p-0 m-0">{{ $doctor->name }}</h4>
+            <h4 class="p-0 m-0"> Specialization: {{ $doctor->name }}</h4>
+            <h5 class="p-0 m-0">Description: {{ $doctor->description }}</h5>
+            <h6 class="p-0 m-0">Achievements: {{ $doctor->achievements }}</h6>
             {{-- <p class="p-0 m-0">Contact Number: {{ $doctor->contact_number }}</p>
             <p class="p-0 m-0">Email: {{ $doctor->email }}</p> --}}
         </div>

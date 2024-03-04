@@ -26,7 +26,6 @@ class PagesController extends Controller
         ->where('users.role', '=', '1')
         ->paginate(5);
         $announcements = Announcement::latest()->first();
-        $services = Service::all();
         if($page != null){
             return view($page ,  compact('carousels' , 'announcements' , 'services' , 'servicesWithChildren' , 'events' ,'doctors'));
         }

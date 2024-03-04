@@ -18,16 +18,16 @@
                 <a class="nav-link" href="{{ route('guest', 'medical_services') }}">Medical Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"
-                    href="{{ !empty(Session::has('loginId')) ? route('client', 'doctor') : route('guest', 'doctor') }}">Book an Appoinment</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{{ route('guest', 'activities') }}">Activities</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('guest', 'aboutus') }}">About Us</a>
             </li>
             @if (!empty(Session::has('loginId')))
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="{{ !empty(Session::has('loginId')) ? route('client', 'doctor') : route('guest', 'doctor') }}">Book an Appoinment</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('client', ['profile', 'clientHeader' => "1"]) }}">Dashboard</a>
             </li>

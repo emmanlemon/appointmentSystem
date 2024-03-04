@@ -79,7 +79,6 @@
                   </div>
                   <div>
                       <form action="{{ route('appointment.destroy', $row->id) }}" method="post">
-  
                           <button class="btn btn-danger" type="submit">
                               <i class="fa fa-trash" aria-hidden="true"></i>
                           </button>  @csrf
@@ -93,7 +92,7 @@
       </tbody>
     </table>
       @empty
-        <span class="p-5">No Appointment found.</span>
+      <p class="border border-info text-center text-uppercase font-weight-bold fs-5 text-white shadow p-2 rounded" style="background-color:#329dc7;">No Appointments.</p>
       @endforelse
 </div>
 </section>

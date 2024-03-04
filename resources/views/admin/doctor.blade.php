@@ -30,12 +30,14 @@
       <input type="text" id="searchInput" class="form-control p-3" placeholder="Search Doctor...">
       <span class="input-group-text border-0" id="search-addon">
           <i class='bx bx-search-alt-2' ></i>
-  </span>
+    </span>
     </div>
     @if(Session::has('error'))
     <div class="alert alert-danger">{{ Session::get('error') }}</div>
     @elseif(Session::has('success'))
     <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @elseif(Session::has('delete'))
+    <div class="alert alert-danger">{{ Session::get('delete') }}</div>
     @endif
 
     <table class="table table-striped">
@@ -98,7 +100,7 @@
             <div class="form-outline mb-2">
               <label class="form-label">First Name</label>
                 <input type="type" name="first_name" class="form-control form-control-lg"
-                  placeholder="Enter Name" value="{{ old('first_name') }}"/>
+                  placeholder="Enter First Name" value="{{ old('first_name') }}"/>
                 @error('first_name')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -107,7 +109,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Middle Name</label>
               <input type="type" name="middle_name" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('middle_name') }}"/>
+                placeholder="Enter Middle Name" value="{{ old('middle_name') }}"/>
               @error('middle_name')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -116,7 +118,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Last Name</label>
               <input type="type" name="last_name" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('last_name') }}"/>
+                placeholder="Enter Last Name" value="{{ old('last_name') }}"/>
               @error('last_name')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -125,7 +127,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Contact number</label>
               <input type="type" name="contact_number" class="form-control form-control-lg"
-                placeholder="Enter Name" value="{{ old('contact_number') }}"/>
+                placeholder="Enter Contact Number" value="{{ old('contact_number') }}"/>
               @error('contact_number')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -134,7 +136,7 @@
           <div class="form-outline mb-2">
             <label class="form-label">Address</label>
               <input type="type" name="address" class="form-control form-control-lg"
-                placeholder="Enter Name"  value="{{ old('address') }}"/>
+                placeholder="Enter Address"  value="{{ old('address') }}"/>
               @error('address')
                   <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -150,15 +152,29 @@
             @enderror
           </div>
 
-          <div class="form-outline mb-2">
+          {{-- <div class="form-outline mb-2">
             <label class="form-label">Services</label>
               <input type="type" name="services" class="form-control form-control-lg"
                 placeholder="Services"  value="{{ old('services') }}"/>
               @error('services')
               <span class="text-danger">{{ $message }}</span>
               @enderror
-            </div>
+            </div> --}}
 
+<div class="form-outline mb-2">
+            <label class="form-label">Services</label>
+            <select name="services" class="form-select" aria-label="Select Service">
+              @forelse ( $services as $service )
+                <option value="{{ $service->id }}">{{ $service->name }}</option>
+              @empty
+                <p>No Services Available</p>
+              @endforelse
+            </select>
+</div>
+      <div class="form-group">
+        <label>Achievements</label>
+        <textarea class="form-control" name="achievements" rows="4"></textarea>
+      </div>
             <div class="form-outline mb-2">
               <label for="formFileSm" class="form-label">Image</label>
               <input class="form-control form-control-sm" name="image" accept="image/*" type="file" required>

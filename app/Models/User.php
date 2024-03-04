@@ -23,6 +23,7 @@ class User extends Authenticatable
     'middle_name',
     'last_name',
     'age',
+    'birthplace',
     'gender',
     'services',
     'address',
@@ -31,7 +32,8 @@ class User extends Authenticatable
     'password',
     'service_id',
     'role',
-    'image'
+    'image',
+    'achievements'
     ];
 
     /**

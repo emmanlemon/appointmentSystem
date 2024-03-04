@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('time');
             $table->string('concern')->nullable();
             // Not Approved
-            $table->string('status')->default(0);
+            $table->string('status')->default("Pending");
             $table->timestamps();
         });
     }
