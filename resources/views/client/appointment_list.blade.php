@@ -68,7 +68,7 @@
           <td>{{ $row->email }}</td>
           <td>{{ $row->contact_number }}</td>
           <td>{{ date('F j, Y', strtotime($row->date)) }} {{ date('g:i a', strtotime($row->time)) }}</td>
-          <td><span class="{{ $row->status == 'Approved' ? 'bg-success' : 'bg-primary'}} px-2 py-1 m-1 text-white rounded">{{ $row->status }}</span></td>
+          <td><span class="{{ $row->status == 'Approved' ? 'bg-success' : ($row->status == 'Declined' ? 'bg-danger' : 'bg-warning' )}} px-2 py-1 m-1 text-white rounded">{{ $row->status }}</span></td>
           <td colspan="2" class="col">
               <div class="d-flex gap-1 justify-content-between">
                   <div>

@@ -11,6 +11,8 @@ use App\Models\Service;
 use App\Models\Carousel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 class ClientController extends Controller
 {
     /**
@@ -44,11 +46,7 @@ class ClientController extends Controller
         $carousels = Carousel::all();
         $announcements = Announcement::latest()->first();
         $doctors = DB::table('users')->leftJoin('services as s', 's.id', '=', 'users.service_id')
-<<<<<<< HEAD
         ->select('*', 'users.image as image', 'users.id as id')
-=======
-        ->select('*' , 'users.id as id' , 'users.image as image')
->>>>>>> ee4983b1dde64a765739714c4669414246e0d0d1
         ->where('users.role', '=', '1')
         ->paginate(5);
 

@@ -23,7 +23,7 @@ class DoctorController extends Controller
         $pendingCount = Appointment::where('doctor_id', $user)->where('status', 'pending')->count();
         $declinedCount = Appointment::where('doctor_id', $user)->where('status', 'declined')->count();
         $approvedCount = Appointment::where('doctor_id', $user)->where('status', 'approved')->count();
-        $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('appointments.status', '=', 1)->paginate(5);
+        $appointmentreports = Appointment::where('doctor_id', '=', $user)->where('appointments.status', 'approved')->paginate(5);
 
         if ($page != null) {
             return view('doctor.' . $page, compact('appointments', 'appointmentreports' , 'pendingCount', 'declinedCount' , 'approvedCount'));
