@@ -39,10 +39,10 @@
           <th scope="row">Age</th>
           <td class="text-center">{{ $user->age }}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <th scope="row">Gender</th>
           <td class="text-center">{{ $user->gender }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <th scope="row">Address</th>
           <td class="text-center">{{ $user->address }}</td>
