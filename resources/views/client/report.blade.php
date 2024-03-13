@@ -55,9 +55,11 @@
           <td>{{ date('F j, Y', strtotime($row->date)) }}</td>
           <td> {{ date('g:i a', strtotime($row->time)) }}</td>
           <td>
-                      <button class="btn btn-warning" data-toggle="modal" data-target="#editAppointmentModal{{ $row->id }}" data-id="{{ $row->id }}">
-                        <i class="fa fa-print" aria-hidden="true"></i>
-                    </button>
+            <a href="{{ route('print', ['page' => 'print_report', 'id' => $row->id]) }}" target="blank">
+              <button class="btn btn-warning" data-toggle="modal" >
+              <i class="fa fa-print" aria-hidden="true"></i>
+          </button>
+        </a>
           </td>
         </tr>
       @empty

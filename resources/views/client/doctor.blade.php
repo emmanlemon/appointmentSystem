@@ -58,10 +58,6 @@
                             <input type="text" name="full_name" class="form-control form-control-lg" placeholder="Full Name" required/>
                         </div>
                         <div class="my-2">
-                            <span class="title-header">Age</span>
-                            <input type="number" name="age" class="form-control form-control-lg" placeholder="Age" required/>
-                        </div>
-                        <div class="my-2">
                                 <label class="form-label">Marital Status</label>
                                 <select class="form-select" name="marital_status">
                                   <option value="Single">Single</option>

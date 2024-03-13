@@ -44,9 +44,10 @@ class ClientController extends Controller
         $carousels = Carousel::all();
         $announcements = Announcement::latest()->first();
         $doctors = DB::table('users')->leftJoin('services as s', 's.id', '=', 'users.service_id')
-        ->select('*' , 'users.id as id')
+        ->select('*', 'users.image as image', 'users.id as id')
         ->where('users.role', '=', '1')
         ->paginate(5);
+
         $services = Service::all();
         $servicesWithChildren = $services->map(function ($service) {
         $service->children = $service->children()->get();

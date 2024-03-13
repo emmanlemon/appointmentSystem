@@ -39,7 +39,8 @@ class AppointmentController extends Controller
         $date = $request->input('date');
         $year = substr($request->input('date'), 2 , 2);
         $month = substr($request->input('date'), 5 , 2 ) ;
-
+        $birthdate = Carbon::createFromFormat('Y-m-d', $request->input('age'));
+        $age = $birthdate->diffInYears(Carbon::now());
         $user = Session::get('loginId');
         if (empty($user)) {
             return redirect()->back()->with('error', 'You need to login First.');
@@ -49,7 +50,7 @@ class AppointmentController extends Controller
             'full_name' => $request->full_name,
             'gender' => $request->gender,
             'marital_status' => $request->marital_status,
-            'age' => $request->age,
+            'age' => $age,
             'address' => $request->address,
             'date_of_birth' => $request->date_of_birth,
             'contact_number' => $request->contact_number,
