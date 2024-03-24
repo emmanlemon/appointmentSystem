@@ -49,7 +49,7 @@
       @forelse ($transactions as $row)
       <tr>
           <th>{{ $count++ }}</th>
-          <td><span class="{{ $row->status == 'Approved' ? 'bg-success' : 'bg-primary'}} px-2 py-1 m-1 text-white rounded">{{ $row->status}}</span></td>
+          <td><span class="{{ $row->status == 'Approved' ? 'bg-success' : ($row->status == 'Declined' ? 'bg-danger' : 'bg-warning' )}} px-2 py-1 m-1 text-white rounded">{{ $row->status}}</span></td>
           <td>{{ $row->transaction_number }}</td>
           <td>{{ $row->doctor_first_name }} {{ $row->doctor_middle_name }} {{ $row->doctor_last_name }}</td>
           <td>{{ date('F j, Y', strtotime($row->date)) }}</td>

@@ -31,13 +31,14 @@
            <i class='bx bx-search-alt-2' ></i>
    </span>
      </div>
-      <table class="table table-striped">
+      <table class="table table-striped text-center">
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col">Status</th>
               <th scope="col">Full Name</th>
-              <th scope="col">Phone Number</th>
               <th scope="col">Address</th>
+              <th scope="col">Phone Number</th>
               <th scope="col">Prefered Date and Time</th>
               <th scope="col">Email</th>
             </tr>
@@ -47,6 +48,7 @@
             @forelse($appointmentreports as $appointment)
             <tr>
              <th>{{ $count++ }}</th>
+             <td><span class="{{ $appointment->status == 'Approved' ? 'bg-success' : ($appointment->status == 'Declined' ? 'bg-danger' : 'bg-warning' )}} px-2 py-1 m-1 text-white rounded">{{ $appointment->status}}</span></td>
              <td>{{ $appointment->full_name }}</td>
              <td>{{ $appointment->address }}</td>
               <td>{{ $appointment->contact_number }}</td>

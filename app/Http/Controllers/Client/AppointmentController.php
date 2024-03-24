@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use App\Notifications\AppointmentNofication;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -39,7 +40,7 @@ class AppointmentController extends Controller
         $date = $request->input('date');
         $year = substr($request->input('date'), 2 , 2);
         $month = substr($request->input('date'), 5 , 2 ) ;
-        $birthdate = Carbon::createFromFormat('Y-m-d', $request->input('age'));
+        $birthdate = Carbon::createFromFormat('Y-m-d', $request->input('date_of_birth'));
         $age = $birthdate->diffInYears(Carbon::now());
         $user = Session::get('loginId');
         if (empty($user)) {

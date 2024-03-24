@@ -25,13 +25,12 @@
             <hr>
             <div class="content">
                 <span>Transaction Number: {{ $appointment->transaction_number }}</span>
-                <span>Status: {{ $appointment->status === '1' ? 'APPROVED' : 'PENDING'}}</span>
-                <span>Patient ID: {{ $appointment->id }}</span>
+                <span>Status: {{ $appointment->status == "Pending" ? "Pending" : ($appointment->status == "Approved" ? "Approved" : "Declined") }}</span>
                 <span>Doctor: {{ $appointment->doctor_first_name }} {{ $appointment->doctor_middle_name }} {{ $appointment->doctor_last_name }}</span>
                 <span>Name: {{ $appointment->full_name }}</span>
                 <span>Email: {{ $appointment->email }}</span>
-                <span>Time Slot: {{ $appointment->time }}</span>
-                <span>Date Appointment: {{ $appointment->date }}</span>
+                <span>Time Slot: {{ date('g:i a', strtotime($appointment->time)) }}</span>
+                <span>Date Appointment: {{ date('F j, Y', strtotime($appointment->date)) }}</span>
             </div>
             <hr>
             <div class="footer" class="font-weight:bold; margin-top:10px;">

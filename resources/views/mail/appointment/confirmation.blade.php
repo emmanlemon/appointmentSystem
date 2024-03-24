@@ -47,7 +47,9 @@
                     Name : {{ $appointment->full_name }}<br>
                     Age : {{ $appointment->age }}<br>
                     Address : {{ $appointment->address }}<br>
-                    Appointment Date / Time: {{ date('F j, Y, g:i a', strtotime($appointment->date)) }}<br>
+                    Appointment Time : {{ date('g:i a', strtotime($appointment->time)) }}<br>
+                    Appointment Date : {{ date('F j, Y', strtotime($appointment->date)) }}<br>
+                    <!-- Appointment Date / Time: {{ date('F j, Y, g:i a', strtotime($appointment->date)) }}<br> -->
                     Additional Information/Concern: {{ $appointment->concern }}<br>
                 </p>
                 <p>

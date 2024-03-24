@@ -108,9 +108,8 @@
           @foreach($appointments as $appointment)
               {
                   title: '{{ $appointment->transaction_number }} {{ $appointment->full_name }}',
-                  color: '{{ $appointment->status == "pending" ? "green" : ($appointment->status == "declined" ? "red" : "red") }}',
+                  color: '{{ $appointment->status == "Pending" ? "Yellow" : ($appointment->status == "Approved" ? "green" : "red") }}',
                   start: '{{ $appointment->date }} {{ $appointment->time }}',
-                  // You may include other fields such as end date, color, etc.
               },
           @endforeach
       ],
