@@ -62,6 +62,13 @@
         </a>
         <span class="tooltip">Event List</span>
       </li>
+      <li>
+        <a href="{{ route('admin' , 'log') }}">
+          <i class='bx bx-cog' ></i>
+          <span class="links_name">Log List</span>
+        </a>
+        <span class="tooltip">Log</span>
+      </li>
       @else
       <li>
         <a href="{{ route('doctor' , 'appointment_detail') }}">

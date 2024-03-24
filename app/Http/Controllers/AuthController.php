@@ -124,6 +124,7 @@ class AuthController extends Controller
             if(Hash::check($request->password, $data->password)){
                 $session = ['loginId'=> $data->id, 'role' => $data->role];
                 $request->session()->put($session);
+                $data->loginHistory()->create();
                 if($data->role == 2){
                     //admin
                     return redirect('page/admin');

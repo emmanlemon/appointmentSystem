@@ -60,6 +60,11 @@ class User extends Authenticatable
     {
         return Carbon::parse($date)->format('d/m/Y h:i:s');
     }
+    
+    public function loginHistory()
+    {
+        return $this->hasMany(LoginHistory::class);
+    }
 
     // public function services(){
     //     return $this->belongsToMany(Service::class , 'service_id' , 'user_id','id');

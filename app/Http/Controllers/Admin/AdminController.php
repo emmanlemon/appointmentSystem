@@ -9,6 +9,7 @@ use App\Models\Appointment;
 use App\Models\Announcement;
 use App\Models\Carousel;
 use App\Models\Service;
+use App\Models\LoginHistory;
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -35,6 +36,7 @@ class AdminController extends Controller
         ->select('*' , 'users.id as id' , 'users.image as image')
         ->where('users.role', '=', '1')
         ->get();
+        $loginHistory = LoginHistory::getUserLoginHistory()->orderByDesc('id')->paginate(10);
         $clients = Appointment::all();
         $events = Event::all();
         $announcements = Announcement::all();
@@ -55,7 +57,7 @@ class AdminController extends Controller
         ->where('appointments.status' , 1)
         ->get();
         if($page != null){
-            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user' , 'servicesWithChildren', 'events' ));
+            return view('admin.'.$page , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user' , 'servicesWithChildren', 'events' , 'loginHistory'));
         }
         return view('admin.index' , compact('doctors' , 'clients' ,'appointmentLists','carousels','announcements' ,'reports', 'services' , 'user' , 'events'));
     }
